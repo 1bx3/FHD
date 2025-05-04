@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="page-header">
+    <h1>الكيلرز</h1>
+    <p>تعرف على جميع الكيلرز في لعبة ديد باي دايلايت، قدراتهم، وتاريخهم</p>
+</section>
+
+<section class="killers-filters">
+    <div class="filter-group">
+        <label for="difficulty-filter">تصفية حسب الصعوبة:</label>
+        <select id="difficulty-filter">
+            <option value="all">الكل</option>
+            <option value="سهل">سهل</option>
+            <option value="متوسط">متوسط</option>
+            <option value="صعب">صعب</option>
+        </select>
+    </div>
+    <div class="filter-group">
+        <label for="search-killer">بحث:</label>
+        <input type="text" id="search-killer" placeholder="ابحث عن كيلر...">
+    </div>
+</section>
+
+<section class="killers-grid">
+    {% for killer in killers %}
+    <div class="killer-card" data-difficulty="{{ killer.difficulty }}">
+        <div class="killer-image">
+            {% if killer.image %}
+            <img src="{{ killer.image }}" alt="{{ killer.name }}">
+            {% else %}
+            <i class="fas fa-skull-crossbones"></i>
+            {% endif %}
+        </div>
+        <div class="killer-info">
+            <h2>{{ killer.name }}</h2>
+            <div class="killer-difficulty">
+                <span class="difficulty-label">الصعوبة:</span>
+                <span class="difficulty-value {{ killer.difficulty }}">{{ killer.difficulty }}</span>
+            </div>
+            <p class="killer-desc">{{ killer.backstory }}</p>
+            <a href="/killers/{{ killer.id }}" class="btn btn-primary">عرض التفاصيل</a>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+
+<section class="killer-tips">
+    <h2>نصائح عامة للعب ككيلر</h2>
+    <div class="tips-grid">
+        <div class="tip-card">
+            <div class="tip-icon">
+                <i class="fas fa-eye"></i>
+            </div>
+            <h3>راقب المولدات</h3>
+            <p>حافظ على مراقبة المولدات، خاصة تلك التي تم إحراز تقدم فيها.</p>
+        </div>
+        
+        <div class="tip-card">
+            <div class="tip-icon">
+                <i class="fas fa-shoe-prints"></i>
+            </div>
+            <h3>تتبع الآثار</h3>
+            <p>انتبه إلى آثار الأقدام وقطرات الدم التي قد تكشف مكان السرفايفرز.</p>
+        </div>
+        
+        <div class="tip-card">
+            <div class="tip-icon">
+                <i class="fas fa-hook"></i>
+            </div>
+            <h3>الإستراتيجية الذكية للهوكس</h3>
+            <p>ضع السرفايفرز على الهوكس القريبة من المولدات النشطة لتسهيل حراستهم.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

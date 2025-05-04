@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="character-details">
+    <div class="character-image">
+        {% if killer.image %}
+        <img src="{{ killer.image }}" alt="{{ killer.name }}">
+        {% else %}
+        <div class="placeholder-image">
+            <i class="fas fa-skull-crossbones fa-5x"></i>
+        </div>
+        {% endif %}
+    </div>
+    
+    <div class="character-info">
+        <h1>{{ killer.name }}</h1>
+        
+        <div class="character-stats">
+            <div class="stat-item">
+                <span class="stat-label">الصعوبة:</span>
+                <span class="stat-value {{ killer.difficulty }}">{{ killer.difficulty }}</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">القدرة الخاصة:</span>
+                <span class="stat-value">{{ killer.power }}</span>
+            </div>
+        </div>
+        
+        <div class="character-backstory">
+            <h2>القصة</h2>
+            <p>{{ killer.backstory }}</p>
+        </div>
+    </div>
+</section>
+
+<section class="character-perks">
+    <h2>بيركس {{ killer.name }}</h2>
+    <div class="perks-list">
+        {% for perk in killer_perks %}
+        <div class="perk-item">
+            <h3>
+                {% if perk.image %}
+                <img src="{{ perk.image }}" alt="{{ perk.name }}">
+                {% endif %}
+                {{ perk.name }}
+            </h3>
+            <p>{{ perk.description }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="character-tips">
+    <h2>نصائح للعب بـ {{ killer.name }}</h2>
+    <ul class="tips-list">
+        <li>استخدم قدرة {{ killer.power }} بشكل استراتيجي للسيطرة على المناطق المهمة من الخريطة.</li>
+        <li>حاول الضغط على المولدات التي يتم العمل عليها بنشاط من قبل السرفايفرز.</li>
+        <li>كن منتبهًا للضوضاء والآثار التي قد تشير إلى مكان السرفايفرز.</li>
+        <li>تعلم كيفية إدارة وقتك وعدم إضاعته في مطاردات طويلة للسرفايفرز الماهرين.</li>
+        <li>استخدم الهوكس بذكاء، وحاول تحويل منطقة اللعب إلى منطقة ضغط من خلال تعليق السرفايفرز بالقرب من بعضهم.</li>
+    </ul>
+</section>
+
+<section class="related-characters">
+    <h2>كيلرز أخرى قد تعجبك</h2>
+    <div class="killers-grid">
+        {% for related_killer in killers %}
+            {% if related_killer.id != killer.id and related_killer.difficulty == killer.difficulty %}
+            <div class="killer-card" data-difficulty="{{ related_killer.difficulty }}">
+                <div class="killer-image">
+                    {% if related_killer.image %}
+                    <img src="{{ related_killer.image }}" alt="{{ related_killer.name }}">
+                    {% else %}
+                    <i class="fas fa-skull-crossbones"></i>
+                    {% endif %}
+                </div>
+                <div class="killer-info">
+                    <h2>{{ related_killer.name }}</h2>
+                    <div class="killer-difficulty">
+                        <span class="difficulty-label">الصعوبة:</span>
+                        <span class="difficulty-value {{ related_killer.difficulty }}">{{ related_killer.difficulty }}</span>
+                    </div>
+                    <a href="/killers/{{ related_killer.id }}" class="btn btn-primary">عرض التفاصيل</a>
+                </div>
+            </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

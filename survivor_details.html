@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="character-details">
+    <div class="character-image">
+        {% if survivor.image %}
+        <img src="{{ survivor.image }}" alt="{{ survivor.name }}">
+        {% else %}
+        <div class="placeholder-image">
+            <i class="fas fa-user fa-5x"></i>
+        </div>
+        {% endif %}
+    </div>
+    
+    <div class="character-info">
+        <h1>{{ survivor.name }}</h1>
+        
+        <div class="character-stats">
+            <div class="stat-item">
+                <span class="stat-label">الصعوبة:</span>
+                <span class="stat-value {{ survivor.difficulty }}">{{ survivor.difficulty }}</span>
+            </div>
+        </div>
+        
+        <div class="character-backstory">
+            <h2>القصة</h2>
+            <p>{{ survivor.backstory }}</p>
+        </div>
+    </div>
+</section>
+
+<section class="character-perks">
+    <h2>بيركس {{ survivor.name }}</h2>
+    <div class="perks-list">
+        {% for perk in survivor_perks %}
+        <div class="perk-item">
+            <h3>
+                {% if perk.image %}
+                <img src="{{ perk.image }}" alt="{{ perk.name }}">
+                {% endif %}
+                {{ perk.name }}
+            </h3>
+            <p>{{ perk.description }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="character-tips">
+    <h2>نصائح للعب بـ {{ survivor.name }}</h2>
+    <ul class="tips-list">
+        <li>تعاون مع فريقك وساعد زملائك السرفايفرز في الأوقات الصعبة.</li>
+        <li>ركز على إصلاح المولدات كهدف أساسي للفريق.</li>
+        <li>كن حذرًا وتجنب الحركات المتسرعة التي قد تكشف موقعك للكيلر.</li>
+        <li>تعلم التوقيت المناسب لإنقاذ السرفايفرز الآخرين من الهوكس.</li>
+        <li>استخدم البيركس الخاصة بـ {{ survivor.name }} بشكل استراتيجي للاستفادة القصوى منها.</li>
+    </ul>
+</section>
+
+<section class="related-characters">
+    <h2>سرفايفرز آخرين قد تعجبك</h2>
+    <div class="survivors-grid">
+        {% for related_survivor in survivors %}
+            {% if related_survivor.id != survivor.id and related_survivor.difficulty == survivor.difficulty %}
+            <div class="survivor-card" data-difficulty="{{ related_survivor.difficulty }}">
+                <div class="survivor-image">
+                    {% if related_survivor.image %}
+                    <img src="{{ related_survivor.image }}" alt="{{ related_survivor.name }}">
+                    {% else %}
+                    <i class="fas fa-user"></i>
+                    {% endif %}
+                </div>
+                <div class="survivor-info">
+                    <h2>{{ related_survivor.name }}</h2>
+                    <div class="survivor-difficulty">
+                        <span class="difficulty-label">الصعوبة:</span>
+                        <span class="difficulty-value {{ related_survivor.difficulty }}">{{ related_survivor.difficulty }}</span>
+                    </div>
+                    <a href="/survivors/{{ related_survivor.id }}" class="btn btn-primary">عرض التفاصيل</a>
+                </div>
+            </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,227 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="page-header">
+    <h1>إحصائيات اللعبة</h1>
+    <p>شاهد أحدث الإحصائيات والمعلومات عن لعبة ديد باي دايلايت</p>
+</section>
+
+<section class="stats-grid">
+    <div class="stats-card">
+        <h2>القتلة الأكثر استخدامًا</h2>
+        <div class="stats-chart">
+            <canvas id="killersChart"></canvas>
+        </div>
+        <div class="stats-list">
+            <ol>
+                {% for killer in stats.most_played_killers %}
+                <li>
+                    <span class="stats-name">{{ killer.name }}</span>
+                    <span class="stats-value">{{ killer.percentage }}%</span>
+                </li>
+                {% endfor %}
+            </ol>
+        </div>
+    </div>
+    
+    <div class="stats-card">
+        <h2>الناجون الأكثر استخدامًا</h2>
+        <div class="stats-chart">
+            <canvas id="survivorsChart"></canvas>
+        </div>
+        <div class="stats-list">
+            <ol>
+                {% for survivor in stats.most_played_survivors %}
+                <li>
+                    <span class="stats-name">{{ survivor.name }}</span>
+                    <span class="stats-value">{{ survivor.percentage }}%</span>
+                </li>
+                {% endfor %}
+            </ol>
+        </div>
+    </div>
+    
+    <div class="stats-card">
+        <h2>قدرات القتلة الأكثر استخدامًا</h2>
+        <div class="stats-chart">
+            <canvas id="killerPerksChart"></canvas>
+        </div>
+        <div class="stats-list">
+            <ol>
+                {% for perk in stats.most_used_perks.killer %}
+                <li>
+                    <span class="stats-name">{{ perk.name }}</span>
+                    <span class="stats-value">{{ perk.percentage }}%</span>
+                </li>
+                {% endfor %}
+            </ol>
+        </div>
+    </div>
+    
+    <div class="stats-card">
+        <h2>قدرات الناجين الأكثر استخدامًا</h2>
+        <div class="stats-chart">
+            <canvas id="survivorPerksChart"></canvas>
+        </div>
+        <div class="stats-list">
+            <ol>
+                {% for perk in stats.most_used_perks.survivor %}
+                <li>
+                    <span class="stats-name">{{ perk.name }}</span>
+                    <span class="stats-value">{{ perk.percentage }}%</span>
+                </li>
+                {% endfor %}
+            </ol>
+        </div>
+    </div>
+    
+    <div class="stats-card wide">
+        <h2>معدلات الفوز في الخرائط</h2>
+        <div class="stats-chart">
+            <canvas id="mapWinRatesChart"></canvas>
+        </div>
+        <div class="stats-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>الخريطة</th>
+                        <th>معدل فوز القتلة</th>
+                        <th>معدل فوز الناجين</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for map in stats.map_win_rates %}
+                    <tr>
+                        <td>{{ map.name }}</td>
+                        <td>{{ map.killer_rate }}%</td>
+                        <td>{{ map.survivor_rate }}%</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Killer Chart
+    const killerCtx = document.getElementById('killersChart').getContext('2d');
+    const killerChart = new Chart(killerCtx, {
+        type: 'pie',
+        data: {
+            labels: [{% for killer in stats.most_played_killers %}'{{ killer.name }}'{% if not loop.last %}, {% endif %}{% endfor %}],
+            datasets: [{
+                data: [{% for killer in stats.most_played_killers %}{{ killer.percentage }}{% if not loop.last %}, {% endif %}{% endfor %}],
+                backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                }
+            }
+        }
+    });
+    
+    // Survivors Chart
+    const survivorCtx = document.getElementById('survivorsChart').getContext('2d');
+    const survivorChart = new Chart(survivorCtx, {
+        type: 'pie',
+        data: {
+            labels: [{% for survivor in stats.most_played_survivors %}'{{ survivor.name }}'{% if not loop.last %}, {% endif %}{% endfor %}],
+            datasets: [{
+                data: [{% for survivor in stats.most_played_survivors %}{{ survivor.percentage }}{% if not loop.last %}, {% endif %}{% endfor %}],
+                backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                }
+            }
+        }
+    });
+    
+    // Killer Perks Chart
+    const killerPerksCtx = document.getElementById('killerPerksChart').getContext('2d');
+    const killerPerksChart = new Chart(killerPerksCtx, {
+        type: 'bar',
+        data: {
+            labels: [{% for perk in stats.most_used_perks.killer %}'{{ perk.name }}'{% if not loop.last %}, {% endif %}{% endfor %}],
+            datasets: [{
+                label: 'نسبة الاستخدام',
+                data: [{% for perk in stats.most_used_perks.killer %}{{ perk.percentage }}{% if not loop.last %}, {% endif %}{% endfor %}],
+                backgroundColor: '#FF6384',
+            }]
+        },
+        options: {
+            responsive: true,
+            indexAxis: 'y',
+            plugins: {
+                legend: {
+                    display: false
+                }
+            }
+        }
+    });
+    
+    // Survivor Perks Chart
+    const survivorPerksCtx = document.getElementById('survivorPerksChart').getContext('2d');
+    const survivorPerksChart = new Chart(survivorPerksCtx, {
+        type: 'bar',
+        data: {
+            labels: [{% for perk in stats.most_used_perks.survivor %}'{{ perk.name }}'{% if not loop.last %}, {% endif %}{% endfor %}],
+            datasets: [{
+                label: 'نسبة الاستخدام',
+                data: [{% for perk in stats.most_used_perks.survivor %}{{ perk.percentage }}{% if not loop.last %}, {% endif %}{% endfor %}],
+                backgroundColor: '#36A2EB',
+            }]
+        },
+        options: {
+            responsive: true,
+            indexAxis: 'y',
+            plugins: {
+                legend: {
+                    display: false
+                }
+            }
+        }
+    });
+    
+    // Map Win Rates Chart
+    const mapWinRatesCtx = document.getElementById('mapWinRatesChart').getContext('2d');
+    const mapWinRatesChart = new Chart(mapWinRatesCtx, {
+        type: 'bar',
+        data: {
+            labels: [{% for map in stats.map_win_rates %}'{{ map.name }}'{% if not loop.last %}, {% endif %}{% endfor %}],
+            datasets: [
+                {
+                    label: 'معدل فوز القتلة',
+                    data: [{% for map in stats.map_win_rates %}{{ map.killer_rate }}{% if not loop.last %}, {% endif %}{% endfor %}],
+                    backgroundColor: '#FF6384',
+                },
+                {
+                    label: 'معدل فوز الناجين',
+                    data: [{% for map in stats.map_win_rates %}{{ map.survivor_rate }}{% if not loop.last %}, {% endif %}{% endfor %}],
+                    backgroundColor: '#36A2EB',
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                }
+            }
+        }
+    });
+});
+</script>
+{% endblock %}

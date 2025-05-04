@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="page-header">
+    <h1>البيركس</h1>
+    <p>تعرف على جميع قدرات الكيلرز والسرفايفرز في لعبة ديد باي دايلايت</p>
+</section>
+
+<section class="perks-filters">
+    <div class="filter-group">
+        <label for="type-filter">نوع البيركس:</label>
+        <a href="{{ url_for('perks_page') }}?type=all" class="filter-btn {{ 'active' if request.args.get('type') == 'all' or not request.args.get('type') }}">الكل</a>
+        <a href="{{ url_for('perks_page') }}?type=killer" class="filter-btn {{ 'active' if request.args.get('type') == 'killer' }}">الكيلرز</a>
+        <a href="{{ url_for('perks_page') }}?type=survivor" class="filter-btn {{ 'active' if request.args.get('type') == 'survivor' }}">السرفايفرز</a>
+    </div>
+    <div class="filter-group">
+        <label for="search-perk">بحث:</label>
+        <input type="text" id="search-perk" placeholder="ابحث عن بيرك...">
+    </div>
+</section>
+
+<section class="perks-grid">
+    {% if request.args.get('type') == 'killer' or not request.args.get('type') or request.args.get('type') == 'all' %}
+        {% for perk in killer_perks %}
+        <div class="perk-card" data-type="killer">
+            <div class="perk-icon">
+                {% if perk.image %}
+                <img src="{{ perk.image }}" alt="{{ perk.name }}">
+                {% else %}
+                <i class="fas fa-fire"></i>
+                {% endif %}
+            </div>
+            <div class="perk-info">
+                <h3>{{ perk.name }}</h3>
+                <p>{{ perk.description }}</p>
+                <div class="perk-character">
+                    <span>الكيلر:</span>
+                    <span>{{ perk.character }}</span>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    {% endif %}
+
+    {% if request.args.get('type') == 'survivor' or not request.args.get('type') or request.args.get('type') == 'all' %}
+        {% for perk in survivor_perks %}
+        <div class="perk-card" data-type="survivor">
+            <div class="perk-icon">
+                {% if perk.image %}
+                <img src="{{ perk.image }}" alt="{{ perk.name }}">
+                {% else %}
+                <i class="fas fa-shield-alt"></i>
+                {% endif %}
+            </div>
+            <div class="perk-info">
+                <h3>{{ perk.name }}</h3>
+                <p>{{ perk.description }}</p>
+                <div class="perk-character">
+                    <span>السرفايفر:</span>
+                    <span>{{ perk.character }}</span>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    {% endif %}
+</section>
+
+<section class="perks-tips">
+    <h2>نصائح عن البيركس</h2>
+    <div class="tips-grid">
+        <div class="tip-card">
+            <div class="tip-icon">
+                <i class="fas fa-puzzle-piece"></i>
+            </div>
+            <h3>اختيار البيركس المناسبة</h3>
+            <p>اختر بيركس تتناسب مع أسلوب لعبك وتكمل بعضها البعض.</p>
+        </div>
+        
+        <div class="tip-card">
+            <div class="tip-icon">
+                <i class="fas fa-sync-alt"></i>
+            </div>
+            <h3>التجربة والتغيير</h3>
+            <p>جرب مجموعات مختلفة من البيركس لاكتشاف ما يناسبك بشكل أفضل.</p>
+        </div>
+        
+        <div class="tip-card">
+            <div class="tip-icon">
+                <i class="fas fa-book"></i>
+            </div>
+            <h3>تعلم تأثيرات البيركس</h3>
+            <p>فهم تأثيرات البيركس بدقة يساعدك على استخدامها في الوقت المناسب.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

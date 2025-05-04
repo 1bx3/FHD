@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-content">
+        <h1>مرحباً بك في عالم دبد</h1>
+        <p>أكبر مصدر للمعلومات العربية عن لعبة ديد باي دايلايت</p>
+        <div class="hero-buttons">
+            <a href="/killers" class="btn btn-primary">الكيلرز</a>
+            <a href="/survivors" class="btn btn-secondary">السرفايفرز</a>
+        </div>
+    </div>
+</section>
+
+<section class="features">
+    <div class="features-grid">
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-skull"></i>
+            </div>
+            <h3>كيلرز</h3>
+            <p>استكشف الكيلرز وقدراتهم الفريدة وكيفية اللعب بهم</p>
+            <a href="/killers" class="feature-link">عرض الكيلرز</a>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-user-group"></i>
+            </div>
+            <h3>سرفايفرز</h3>
+            <p>تعرف على السرفايفرز وشخصياتهم وكيفية النجاة معهم</p>
+            <a href="/survivors" class="feature-link">عرض السرفايفرز</a>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-bolt"></i>
+            </div>
+            <h3>بيركس</h3>
+            <p>استكشف البيركس المتاحة للكيلرز والسرفايفرز ومزاياهم</p>
+            <a href="/perks" class="feature-link">عرض البيركس</a>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-chart-simple"></i>
+            </div>
+            <h3>إحصائيات</h3>
+            <p>تعرف على أحدث الإحصائيات ومعدلات استخدام الشخصيات والقدرات</p>
+            <a href="/stats" class="feature-link">عرض الإحصائيات</a>
+        </div>
+    </div>
+</section>
+
+<section class="updates">
+    <h2>آخر التحديثات</h2>
+    <div class="updates-grid">
+        <div class="update-card">
+            <div class="update-header">
+                <h3>استراتيجيات لعب ذا نيرس</h3>
+                <span class="update-date">منذ 3 أيام</span>
+            </div>
+            <p>دليل شامل لاستراتيجيات وتكتيكات لعب ذا نيرس للاعبي الكيلر المهتمين بإتقان هذه الشخصية.</p>
+            <a href="/killers/nurse" class="update-link">اقرأ المزيد</a>
+        </div>
+        
+        <div class="update-card">
+            <div class="update-header">
+                <h3>دليل البقاء على قيد الحياة</h3>
+                <span class="update-date">منذ أسبوع</span>
+            </div>
+            <p>دليل شامل للسرفايفرز المبتدئين لمساعدتهم على الهروب من الكيلرز بنجاح.</p>
+            <a href="#" class="update-link">اقرأ المزيد</a>
+        </div>
+        
+        <div class="update-card">
+            <div class="update-header">
+                <h3>تحديث إحصائيات اللعبة</h3>
+                <span class="update-date">منذ أسبوعين</span>
+            </div>
+            <p>تم تحديث إحصائيات اللعبة لتشمل أحدث البيانات عن معدلات الفوز والبيركس الأكثر استخدامًا.</p>
+            <a href="/stats" class="update-link">اقرأ المزيد</a>
+        </div>
+    </div>
+</section>
+
+<section class="newsletter">
+    <div class="newsletter-content">
+        <h2>اشترك في النشرة الإخبارية</h2>
+        <p>احصل على آخر المعلومات والتحديثات عن لعبة ديد باي دايلايت مباشرة في بريدك الإلكتروني.</p>
+        <form class="newsletter-form">
+            <input type="email" placeholder="بريدك الإلكتروني" required>
+            <button type="submit" class="btn btn-primary">اشتراك</button>
+        </form>
+    </div>
+</section>
+{% endblock %}

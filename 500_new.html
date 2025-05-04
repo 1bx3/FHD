@@ -1,0 +1,90 @@
+{% extends "base_new.html" %}
+{% block content %}
+
+<div class="error-page text-center">
+    <div class="error-container mb-5">
+        <h1 class="display-1 text-danger">500</h1>
+        <h2 class="mb-4">خطأ في الخادم</h2>
+        <p class="lead mb-5">عذراً، حدث خطأ في الخادم أثناء محاولة معالجة طلبك. نعمل على حل المشكلة في أقرب وقت ممكن.</p>
+        
+        <div class="error-image mb-5">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="صورة خطأ 500" class="img-fluid error-img" style="max-width: 300px;">
+        </div>
+        
+        <div class="error-actions">
+            <a href="{{ url_for('index') }}" class="btn btn-primary btn-lg me-3">
+                <i class="fas fa-home me-2"></i>العودة إلى الرئيسية
+            </a>
+            <a href="#" class="btn btn-outline-secondary btn-lg" onclick="window.location.reload()">
+                <i class="fas fa-sync-alt me-2"></i>إعادة تحميل الصفحة
+            </a>
+        </div>
+    </div>
+    
+    <div class="card mt-5">
+        <div class="card-body">
+            <h3 class="mb-3">ماذا يمكنك أن تفعل الآن؟</h3>
+            <ul class="list-group list-group-flush text-start">
+                <li class="list-group-item bg-transparent">انتظر قليلاً ثم حاول مرة أخرى، قد تكون المشكلة مؤقتة.</li>
+                <li class="list-group-item bg-transparent">تحقق من اتصالك بالإنترنت وأنه يعمل بشكل جيد.</li>
+                <li class="list-group-item bg-transparent">عد إلى الصفحة الرئيسية وحاول الوصول إلى الصفحة بطريقة مختلفة.</li>
+                <li class="list-group-item bg-transparent">إذا استمرت المشكلة، يرجى التواصل معنا عبر وسائل التواصل الاجتماعي المذكورة أدناه.</li>
+            </ul>
+            
+            <div class="social-links mt-4 text-center">
+                <a href="#" class="btn btn-outline-dark me-2">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="btn btn-outline-dark me-2">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="btn btn-outline-dark me-2">
+                    <i class="fab fa-discord"></i>
+                </a>
+                <a href="#" class="btn btn-outline-dark">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .error-page {
+        padding: 60px 0;
+    }
+    
+    .error-container {
+        max-width: 700px;
+        margin: 0 auto;
+    }
+    
+    .display-1 {
+        font-size: 8rem;
+        font-weight: 900;
+        text-shadow: 3px 3px 0 #343a40;
+    }
+    
+    .error-img {
+        transform: scale(1);
+        transition: transform 0.3s;
+    }
+    
+    .error-img:hover {
+        transform: scale(1.05);
+    }
+    
+    .social-links a {
+        font-size: 1.2rem;
+        padding: 0.75rem 1rem;
+        border-radius: 50%;
+        transition: all 0.3s;
+    }
+    
+    .social-links a:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+</style>
+
+{% endblock %}

@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- قسم الترحيب -->
+<div class="welcome-section text-center mb-5">
+    <h1 class="main-title">مرحباً بك في عالم دبد</h1>
+    <p class="lead">أكبر مصدر للمعلومات العربية عن لعبة ديد باي دايلايت</p>
+</div>
+
+<!-- أقسام الموقع الرئيسية -->
+<div class="main-sections mb-5">
+    <div class="row">
+        <!-- قسم الكيلرز -->
+        <div class="col-md-6 mb-4">
+            <div class="card section-card">
+                <div class="card-body">
+                    <h2 class="section-title">كيلرز</h2>
+                    <p>استكشف الكيلرز وتعرّف الفريدة وكيفية اللعب بهم</p>
+                    <a href="{{ url_for('killers_page') }}" class="btn btn-outline-danger">عرض الكيلرز</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- قسم السرفايفرز -->
+        <div class="col-md-6 mb-4">
+            <div class="card section-card">
+                <div class="card-body">
+                    <h2 class="section-title">سرفايفرز</h2>
+                    <p>تعرف على السرفايفرز وخصائصهم وكيفية النجاة معهم</p>
+                    <a href="{{ url_for('survivors_page') }}" class="btn btn-outline-primary">عرض السرفايفرز</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- قسم البيركس -->
+        <div class="col-md-6 mb-4">
+            <div class="card section-card">
+                <div class="card-body">
+                    <h2 class="section-title">بيركس</h2>
+                    <p>استكشف البيركس الخاصة بالكيلرز والسرفايفرز وتأثيراتهم</p>
+                    <a href="{{ url_for('perks_page') }}" class="btn btn-outline-success">عرض البيركس</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- قسم الإحصائيات -->
+        <div class="col-md-6 mb-4">
+            <div class="card section-card">
+                <div class="card-body">
+                    <h2 class="section-title">إحصائيات</h2>
+                    <p>تعرف على أحدث الإحصائيات ومعدلات استخدام الشخصيات والبيركس</p>
+                    <a href="#" class="btn btn-outline-info">عرض الإحصائيات</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- آخر التحديثات -->
+<div class="latest-updates mb-5">
+    <h2 class="section-title mb-4">آخر التحديثات</h2>
+    
+    <div class="card mb-3 update-card">
+        <div class="card-body">
+            <h3 class="update-title">استراتيجيات لعب لا نيميسيس</h3>
+            <p class="update-date">منذ 5 أيام</p>
+            <p class="update-desc">دليل شامل لاستراتيجيات ونصائحات لعب لا نيميسيس بكفاءة عالية بإضافة هذه التحديثات</p>
+            <a href="#" class="btn btn-sm btn-outline-dark">إقرأ المزيد</a>
+        </div>
+    </div>
+    
+    <div class="card mb-3 update-card">
+        <div class="card-body">
+            <h3 class="update-title">دليل البقاء على قيد الحياة</h3>
+            <p class="update-date">منذ أسبوع</p>
+            <p class="update-desc">دليل شامل للسرفايفرز المبتدئين لمساعدتهم على الهروب من الكيلرز بنجاح</p>
+            <a href="#" class="btn btn-sm btn-outline-dark">إقرأ المزيد</a>
+        </div>
+    </div>
+    
+    <div class="card mb-3 update-card">
+        <div class="card-body">
+            <h3 class="update-title">تحديث إحصائيات اللعبة</h3>
+            <p class="update-date">منذ أسبوعين</p>
+            <p class="update-desc">تم تحديث إحصائيات اللعبة لتشمل أحدث البيانات عن معدلات الفوز والخسارة وأكثر الكيلرز استخداماً</p>
+            <a href="#" class="btn btn-sm btn-outline-dark">إقرأ المزيد</a>
+        </div>
+    </div>
+</div>
+
+<!-- الاشتراك في النشرة الإخبارية -->
+<div class="newsletter-section mb-5">
+    <h2 class="section-title mb-4">اشترك في النشرة الإخبارية</h2>
+    <p>احصل على آخر المعلومات والتحديثات عن اللعبة من خلال النشرة الإخبارية</p>
+    
+    <form class="newsletter-form">
+        <div class="input-group mb-3">
+            <input type="email" class="form-control" placeholder="أدخل بريدك الإلكتروني" required>
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-primary">اشترك</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

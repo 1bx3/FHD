@@ -1,0 +1,274 @@
+{% extends "base_new.html" %}
+{% block content %}
+
+<div class="survivor-details-page">
+    <!-- رابط العودة -->
+    <div class="mb-4">
+        <a href="{{ url_for('survivors_page') }}" class="btn btn-outline-primary">
+            <i class="fas fa-arrow-right ms-2"></i>العودة إلى قائمة السرفايفرز
+        </a>
+    </div>
+    
+    <!-- معلومات السرفايفر الرئيسية -->
+    <div class="card mb-5 survivor-main-card">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="{{ survivor.image }}" class="img-fluid rounded-start h-100 w-100 object-fit-cover" alt="{{ survivor.name }}">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h1 class="card-title">{{ survivor.name }}</h1>
+                    <div class="difficulty-badge mb-3">
+                        <span class="badge 
+                            {% if survivor.difficulty == 'سهل' %}bg-success
+                            {% elif survivor.difficulty == 'متوسط' %}bg-warning
+                            {% else %}bg-danger{% endif %}">
+                            مستوى الصعوبة: {{ survivor.difficulty }}
+                        </span>
+                    </div>
+                    <h3 class="character-traits">الخصائص المميزة</h3>
+                    <p class="card-text">
+                        {% if survivor.id == 'dwight' %}
+                        القيادة، العمل الجماعي، سرعة إصلاح المولدات
+                        {% elif survivor.id == 'meg' %}
+                        السرعة، الحركة، التنقل السريع
+                        {% elif survivor.id == 'claudette' %}
+                        العلاج الذاتي، مساعدة الفريق، التخفي
+                        {% elif survivor.id == 'jake' %}
+                        الهدوء، التخفي، تعطيل الخطافات
+                        {% elif survivor.id == 'nea' %}
+                        الخفة، التسلق، الهروب السريع
+                        {% else %}
+                        التكيف، البقاء، المقاومة
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- قصة السرفايفر -->
+    <div class="card mb-5">
+        <div class="card-header bg-primary text-white">
+            <h3 class="mb-0">قصة السرفايفر</h3>
+        </div>
+        <div class="card-body">
+            <p class="backstory-text">{{ survivor.backstory }}</p>
+        </div>
+    </div>
+    
+    <!-- توصيات وأساليب اللعب -->
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">أسلوب اللعب الموصى به</h3>
+                </div>
+                <div class="card-body">
+                    <h4 class="playstyle-title">
+                        {% if survivor.id == 'dwight' %}
+                        أسلوب دعم الفريق
+                        {% elif survivor.id == 'meg' %}
+                        أسلوب المراوغة والهروب
+                        {% elif survivor.id == 'claudette' %}
+                        أسلوب المعالِج
+                        {% elif survivor.id == 'jake' %}
+                        أسلوب التخفي والتعطيل
+                        {% elif survivor.id == 'nea' %}
+                        أسلوب المراوغة المتقدم
+                        {% else %}
+                        أسلوب متوازن
+                        {% endif %}
+                    </h4>
+                    <p>يعتمد أسلوب اللعب بـ {{ survivor.name }} على استغلال نقاط قوته في {{ 
+                        'دعم الفريق وإصلاح المولدات' if survivor.id == 'dwight' else
+                        'المراوغة والهروب السريع' if survivor.id == 'meg' else
+                        'التخفي وعلاج زملاء الفريق' if survivor.id == 'claudette' else
+                        'العمل الفردي وتعطيل الخطافات' if survivor.id == 'jake' else
+                        'الحركة الرشيقة والتنقل السريع' if survivor.id == 'nea' else
+                        'المرونة في أداء مختلف المهام'
+                    }}.</p>
+                    <ul class="playstyle-tips">
+                        <li>{{ 
+                            'استخدم قدراتك على تسريع إصلاح المولدات عند العمل مع فريقك.' if survivor.id == 'dwight' else
+                            'استغل سرعتك للهروب من الكيلر وإنقاذ زملائك من مسافات بعيدة.' if survivor.id == 'meg' else
+                            'اعمل على علاج زملائك بسرعة والتخفي عن أنظار الكيلر.' if survivor.id == 'claudette' else
+                            'ركز على تعطيل الخطافات في المناطق المهمة وتجنب إصدار الضوضاء.' if survivor.id == 'jake' else
+                            'استغل خفتك وقدرتك على التسلق للهروب من الكيلر بطرق غير تقليدية.' if survivor.id == 'nea' else
+                            'كن مرناً واستجب لاحتياجات فريقك حسب الموقف.'
+                        }}</li>
+                        <li>العمل مع الفريق يزيد فرص البقاء بشكل كبير، لا تترك زملاءك لمصيرهم.</li>
+                        <li>تعلم متى يجب التركيز على إصلاح المولدات ومتى يجب إنقاذ الزملاء.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">أفضل البيركس الموصى بها</h3>
+                </div>
+                <div class="card-body">
+                    <div class="recommended-perk mb-3">
+                        <h4>{{ 
+                            'بوند' if survivor.id == 'dwight' else
+                            'سپرنت بيرست' if survivor.id == 'meg' else
+                            'سيلف كير' if survivor.id == 'claudette' else
+                            'آيرون ويل' if survivor.id == 'jake' else
+                            'بالانسد لاندينج' if survivor.id == 'nea' else
+                            'ديد هارد'
+                        }}</h4>
+                        <p>{{ 
+                            'يمكنك رؤية زملائك من مسافة بعيدة لتنسيق العمل معهم.' if survivor.id == 'dwight' else
+                            'تحصل على زيادة كبيرة في السرعة عند بدء الركض، مثالي للهروب.' if survivor.id == 'meg' else
+                            'يمكنك علاج نفسك بدون استخدام حقيبة الإسعافات.' if survivor.id == 'claudette' else
+                            'تصدر ضوضاء أقل عند التألم والإصابة، مما يصعب على الكيلر تحديد موقعك.' if survivor.id == 'jake' else
+                            'تقلل من صوت السقوط وتزيد سرعتك بعد السقوط من مكان مرتفع.' if survivor.id == 'nea' else
+                            'عندما تكون جريحاً، يمكنك الاندفاع للأمام وتجنب ضربة.'
+                        }}</p>
+                    </div>
+                    <div class="recommended-perk mb-3">
+                        <h4>{{ 
+                            'پروف ذايسيلف' if survivor.id == 'dwight' else
+                            'أدرينالين' if survivor.id == 'meg' else
+                            'بوتاني نوليدج' if survivor.id == 'claudette' else
+                            'سابوتير' if survivor.id == 'jake' else
+                            'أربان إيفيجن' if survivor.id == 'nea' else
+                            'بورود تايم'
+                        }}</h4>
+                        <p>{{ 
+                            'تستطيع إصلاح المولدات بشكل أسرع عندما يكون زملاؤك قريبين منك.' if survivor.id == 'dwight' else
+                            'استعادة صحة كاملة وزيادة في السرعة عند تشغيل آخر مولد.' if survivor.id == 'meg' else
+                            'زيادة سرعة علاج الزملاء ومعرفة حالتهم الصحية.' if survivor.id == 'claudette' else
+                            'تعطيل الخطافات بسرعة أكبر وبدون ضوضاء.' if survivor.id == 'jake' else
+                            'زيادة سرعة الحركة عند التخفي وتقليل صوت الخطوات.' if survivor.id == 'nea' else
+                            'عند إنقاذ سرفايفر من الخطاف، يحصل على حماية ضد ضربة واحدة.'
+                        }}</p>
+                    </div>
+                    <div class="recommended-perk mb-3">
+                        <h4>ديد هارد</h4>
+                        <p>عندما تكون جريحاً، يمكنك الاندفاع للأمام وتجنب ضربة.</p>
+                    </div>
+                    <div class="recommended-perk">
+                        <h4>أنبريكابل</h4>
+                        <p>يمكنك التعافي من حالة الإصابة الخطيرة مرة واحدة في المباراة.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- نصائح للعب بهذا السرفايفر -->
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            <h3 class="mb-0">نصائح متقدمة للعب</h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <h4><i class="fas fa-lightbulb text-warning me-2"></i>نصائح للبقاء</h4>
+                    <ul class="advanced-tips">
+                        <li>استخدم البيئة المحيطة لمصلحتك للهروب من الكيلر.</li>
+                        <li>تعلم متى يجب التضحية لإنقاذ زميلك ومتى يجب التركيز على النجاة.</li>
+                        <li>انتبه للأصوات والإشارات البصرية التي تدل على اقتراب الكيلر.</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h4><i class="fas fa-exclamation-triangle text-danger me-2"></i>الأخطاء الشائعة</h4>
+                    <ul class="advanced-tips">
+                        <li>الركض دون داعي يترك آثاراً يمكن للكيلر رؤيتها وتتبعها.</li>
+                        <li>إهمال إنقاذ الزملاء من الخطافات قبل وصولهم للمرحلة الثانية.</li>
+                        <li>التعجل في إصلاح المولدات وعدم النجاح في اختبارات المهارة.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- مقاطع فيديو إرشادية -->
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            <h3 class="mb-0">مقاطع فيديو إرشادية</h3>
+        </div>
+        <div class="card-body">
+            <p>لمزيد من النصائح حول كيفية اللعب بـ {{ survivor.name }}، يمكنك مشاهدة مقاطع الفيديو الإرشادية على قناتنا على يوتيوب:</p>
+            <div class="d-grid gap-2 col-md-6 mx-auto">
+                <a href="#" class="btn btn-danger" target="_blank">
+                    <i class="fab fa-youtube me-2"></i>مشاهدة الفيديوهات الإرشادية
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- سرفايفرز أخرى قد تعجبك -->
+    <div class="other-survivors mt-5">
+        <h3 class="section-title mb-4">سرفايفرز آخرون قد تعجبك</h3>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <div class="card h-100">
+                    <img src="static/images/logo.png" class="card-img-top" alt="ميج توماس">
+                    <div class="card-body">
+                        <h5 class="card-title">ميج توماس</h5>
+                        <span class="badge bg-warning mb-2">متوسط</span>
+                        <p class="card-text">مناسبة للاعبين الذين يفضلون المراوغة والهروب السريع.</p>
+                        <a href="#" class="btn btn-sm btn-primary">عرض التفاصيل</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="static/images/logo.png" class="card-img-top" alt="كلوديت موريل">
+                    <div class="card-body">
+                        <h5 class="card-title">كلوديت موريل</h5>
+                        <span class="badge bg-success mb-2">سهل</span>
+                        <p class="card-text">مناسبة للاعبين الذين يفضلون العلاج والمساعدة.</p>
+                        <a href="#" class="btn btn-sm btn-primary">عرض التفاصيل</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="static/images/logo.png" class="card-img-top" alt="جيك بارك">
+                    <div class="card-body">
+                        <h5 class="card-title">جيك بارك</h5>
+                        <span class="badge bg-warning mb-2">متوسط</span>
+                        <p class="card-text">مناسب للاعبين الذين يفضلون اللعب المنفرد والتخفي.</p>
+                        <a href="#" class="btn btn-sm btn-primary">عرض التفاصيل</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .survivor-main-card {
+        border: none;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+    
+    .backstory-text {
+        font-size: 1.1rem;
+        line-height: 1.8;
+    }
+    
+    .playstyle-title, .recommended-perk h4 {
+        border-bottom: 2px solid #f0f0f0;
+        padding-bottom: 10px;
+        margin-bottom: 15px;
+        color: #0d6efd;
+    }
+    
+    .playstyle-tips li, .advanced-tips li {
+        margin-bottom: 10px;
+    }
+    
+    .character-traits {
+        font-size: 1.5rem;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        color: #0d6efd;
+    }
+</style>
+
+{% endblock %}

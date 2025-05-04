@@ -1,0 +1,68 @@
+{% extends "base_new.html" %}
+{% block content %}
+
+<div class="killers-page">
+    <h1 class="section-title text-center mb-4">كيلرز</h1>
+    <p class="lead text-center mb-5">اكتشف جميع الكيلرز المتاحين في لعبة ديد باي دايلايت وتعرف على قدراتهم الخاصة ومستوى صعوبتهم.</p>
+    
+    <!-- أدوات البحث والتصفية -->
+    <div class="search-filter-section mb-4">
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-search"></i></span>
+                    <input type="text" id="killer-search" class="form-control" placeholder="ابحث عن كيلر...">
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <div class="input-group">
+                    <span class="input-group-text">فلتر حسب الصعوبة</span>
+                    <select id="killer-difficulty-filter" class="form-select">
+                        <option value="all">الكل</option>
+                        <option value="سهل">سهل</option>
+                        <option value="متوسط">متوسط</option>
+                        <option value="صعب">صعب</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- قائمة الكيلرز -->
+    <div class="row">
+        {% for killer in killers %}
+        <div class="col-md-4 mb-4">
+            <div class="card killer-card" data-difficulty="{{ killer.difficulty }}">
+                <img src="{{ killer.image }}" class="card-img-top" alt="{{ killer.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ killer.name }}</h5>
+                    <div class="difficulty-badge mb-2">
+                        <span class="badge 
+                            {% if killer.difficulty == 'سهل' %}bg-success
+                            {% elif killer.difficulty == 'متوسط' %}bg-warning
+                            {% else %}bg-danger{% endif %}">
+                            {{ killer.difficulty }}
+                        </span>
+                    </div>
+                    <p class="card-text">{{ killer.power }}</p>
+                    <a href="{{ url_for('killer_details', killer_id=killer.id) }}" class="btn btn-dark btn-sm">عرض التفاصيل</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    
+    <!-- معلومات مفيدة عن الكيلرز -->
+    <div class="info-section mt-5">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">معلومات عن الكيلرز</h3>
+                <p>الكيلرز هم الشخصيات التي يمكن للاعب استخدامها لمطاردة والقبض على السرفايفرز في لعبة ديد باي دايلايت. كل كيلر يمتلك قدرة خاصة فريدة وثلاث بيركس مميزة.</p>
+                <p>في هذا القسم يمكنك استكشاف جميع الكيلرز المتاحين في اللعبة والتعرف على قدراتهم وقصصهم ومستوى صعوبتهم. اختر الكيلر الذي يناسب أسلوب لعبك!</p>
+                <p>يمكنك البحث عن كيلر معين باستخدام خانة البحث أو تصفية الكيلرز حسب مستوى الصعوبة.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

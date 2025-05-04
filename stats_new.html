@@ -1,0 +1,771 @@
+{% extends "base_new.html" %}
+{% block content %}
+
+<div class="stats-page">
+    <h1 class="section-title text-center mb-4">إحصائيات اللعبة</h1>
+    <p class="lead text-center mb-5">تعرف على أحدث الإحصائيات ومعدلات استخدام الشخصيات والبيركس في لعبة ديد باي دايلايت.</p>
+    
+    <!-- أقسام الإحصائيات -->
+    <ul class="nav nav-tabs mb-4" id="statsTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="killers-stats-tab" data-bs-toggle="tab" data-bs-target="#killers-stats" type="button" role="tab">إحصائيات الكيلرز</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="survivors-stats-tab" data-bs-toggle="tab" data-bs-target="#survivors-stats" type="button" role="tab">إحصائيات السرفايفرز</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="perks-stats-tab" data-bs-toggle="tab" data-bs-target="#perks-stats" type="button" role="tab">إحصائيات البيركس</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="maps-stats-tab" data-bs-toggle="tab" data-bs-target="#maps-stats" type="button" role="tab">إحصائيات الخرائط</button>
+        </li>
+    </ul>
+    
+    <!-- محتوى الإحصائيات -->
+    <div class="tab-content" id="statsTabContent">
+        <!-- إحصائيات الكيلرز -->
+        <div class="tab-pane fade show active" id="killers-stats" role="tabpanel">
+            <div class="card mb-4">
+                <div class="card-header bg-dark text-white">
+                    <h3 class="mb-0">إحصائيات الكيلرز</h3>
+                </div>
+                <div class="card-body">
+                    <h4 class="stats-subtitle">معدل استخدام الكيلرز</h4>
+                    <p class="text-muted mb-4">معدل اختيار كل كيلر من قبل اللاعبين في آخر 30 يوم:</p>
+                    
+                    <div class="chart-container mb-5">
+                        <canvas id="killersUsageChart" width="400" height="200"></canvas>
+                    </div>
+                    
+                    <h4 class="stats-subtitle">معدل الفوز لكل كيلر</h4>
+                    <p class="text-muted mb-4">نسبة المباريات التي يفوز فيها كل كيلر (4 قتلى أو أكثر):</p>
+                    
+                    <div class="chart-container mb-5">
+                        <canvas id="killersWinRateChart" width="400" height="200"></canvas>
+                    </div>
+                    
+                    <h4 class="stats-subtitle">أكثر الكيلرز فعالية</h4>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th scope="col">المرتبة</th>
+                                    <th scope="col">الكيلر</th>
+                                    <th scope="col">معدل الفوز</th>
+                                    <th scope="col">معدل القتل</th>
+                                    <th scope="col">معدل الاستخدام</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>ذا نيرس</td>
+                                    <td>68.5%</td>
+                                    <td>3.2</td>
+                                    <td>12.3%</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>ذا سبيريت</td>
+                                    <td>64.2%</td>
+                                    <td>3.1</td>
+                                    <td>14.7%</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td>ذا بلايت</td>
+                                    <td>62.8%</td>
+                                    <td>3.0</td>
+                                    <td>9.6%</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">4</th>
+                                    <td>ذا هاج</td>
+                                    <td>59.3%</td>
+                                    <td>2.8</td>
+                                    <td>7.2%</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">5</th>
+                                    <td>ذا هنترس</td>
+                                    <td>57.1%</td>
+                                    <td>2.7</td>
+                                    <td>8.9%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- إحصائيات السرفايفرز -->
+        <div class="tab-pane fade" id="survivors-stats" role="tabpanel">
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">إحصائيات السرفايفرز</h3>
+                </div>
+                <div class="card-body">
+                    <h4 class="stats-subtitle">معدل استخدام السرفايفرز</h4>
+                    <p class="text-muted mb-4">معدل اختيار كل سرفايفر من قبل اللاعبين في آخر 30 يوم:</p>
+                    
+                    <div class="chart-container mb-5">
+                        <canvas id="survivorsUsageChart" width="400" height="200"></canvas>
+                    </div>
+                    
+                    <h4 class="stats-subtitle">معدل النجاة لكل سرفايفر</h4>
+                    <p class="text-muted mb-4">نسبة المباريات التي ينجو فيها كل سرفايفر:</p>
+                    
+                    <div class="chart-container mb-5">
+                        <canvas id="survivorsEscapeRateChart" width="400" height="200"></canvas>
+                    </div>
+                    
+                    <h4 class="stats-subtitle">أكثر السرفايفرز فعالية</h4>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead class="table-primary">
+                                <tr>
+                                    <th scope="col">المرتبة</th>
+                                    <th scope="col">السرفايفر</th>
+                                    <th scope="col">معدل النجاة</th>
+                                    <th scope="col">معدل إصلاح المولدات</th>
+                                    <th scope="col">معدل الاستخدام</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>ميج توماس</td>
+                                    <td>52.5%</td>
+                                    <td>1.8</td>
+                                    <td>15.2%</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>كلوديت موريل</td>
+                                    <td>49.8%</td>
+                                    <td>1.7</td>
+                                    <td>18.6%</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td>فينيت بونسيت</td>
+                                    <td>48.3%</td>
+                                    <td>2.1</td>
+                                    <td>7.4%</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">4</th>
+                                    <td>نيا كارلسون</td>
+                                    <td>47.1%</td>
+                                    <td>1.6</td>
+                                    <td>9.3%</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">5</th>
+                                    <td>ديفيد كينج</td>
+                                    <td>45.9%</td>
+                                    <td>1.5</td>
+                                    <td>12.1%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- إحصائيات البيركس -->
+        <div class="tab-pane fade" id="perks-stats" role="tabpanel">
+            <div class="card mb-4">
+                <div class="card-header bg-success text-white">
+                    <h3 class="mb-0">إحصائيات البيركس</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <h4 class="stats-subtitle">أكثر بيركس الكيلر استخداماً</h4>
+                            <p class="text-muted mb-4">نسبة استخدام كل بيرك من قبل الكيلرز:</p>
+                            
+                            <div class="chart-container mb-5">
+                                <canvas id="killerPerksUsageChart" width="400" height="250"></canvas>
+                            </div>
+                            
+                            <div class="table-responsive">
+                                <table class="table table-sm table-striped">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th scope="col">المرتبة</th>
+                                            <th scope="col">البيرك</th>
+                                            <th scope="col">معدل الاستخدام</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>باربكيو آند تشيلي</td>
+                                            <td>68.7%</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>كوراپت انترفنشن</td>
+                                            <td>62.3%</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td>پوپ جوز ذا ويزل</td>
+                                            <td>57.8%</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">4</th>
+                                            <td>هيكس: روين</td>
+                                            <td>52.4%</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">5</th>
+                                            <td>هيكس: نو ون اسكيبس ديث</td>
+                                            <td>48.9%</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h4 class="stats-subtitle">أكثر بيركس السرفايفر استخداماً</h4>
+                            <p class="text-muted mb-4">نسبة استخدام كل بيرك من قبل السرفايفرز:</p>
+                            
+                            <div class="chart-container mb-5">
+                                <canvas id="survivorPerksUsageChart" width="400" height="250"></canvas>
+                            </div>
+                            
+                            <div class="table-responsive">
+                                <table class="table table-sm table-striped">
+                                    <thead class="table-primary">
+                                        <tr>
+                                            <th scope="col">المرتبة</th>
+                                            <th scope="col">البيرك</th>
+                                            <th scope="col">معدل الاستخدام</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>ديد هارد</td>
+                                            <td>71.2%</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>بورود تايم</td>
+                                            <td>65.9%</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td>أنبريكابل</td>
+                                            <td>59.4%</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">4</th>
+                                            <td>آدرينالين</td>
+                                            <td>53.7%</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">5</th>
+                                            <td>ديسايسيف سترايك</td>
+                                            <td>51.2%</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h4 class="stats-subtitle mt-3">توليفات البيركس الأكثر استخداماً</h4>
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="card bg-light mb-3">
+                                <div class="card-header">
+                                    <h5 class="mb-0">توليفات بيركس الكيلر</h5>
+                                </div>
+                                <div class="card-body">
+                                    <ol class="list-group list-group-flush list-group-numbered">
+                                        <li class="list-group-item bg-transparent">باربكيو آند تشيلي + پوپ جوز ذا ويزل + كوراپت انترفنشن + هيكس: روين</li>
+                                        <li class="list-group-item bg-transparent">هيكس: روين + هيكس: دیڤاور هوپ + كوراپت انترفنشن + پوپ جوز ذا ويزل</li>
+                                        <li class="list-group-item bg-transparent">باربكيو آند تشيلي + هيكس: نو ون اسكيبس ديث + سوردبلاي + ثاناتوفوبيا</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card bg-light mb-3">
+                                <div class="card-header">
+                                    <h5 class="mb-0">توليفات بيركس السرفايفر</h5>
+                                </div>
+                                <div class="card-body">
+                                    <ol class="list-group list-group-flush list-group-numbered">
+                                        <li class="list-group-item bg-transparent">ديد هارد + بورود تايم + أنبريكابل + آدرينالين</li>
+                                        <li class="list-group-item bg-transparent">ديد هارد + ديسايسيف سترايك + آيرون ويل + أنبريكابل</li>
+                                        <li class="list-group-item bg-transparent">سپرنت بيرست + ديد هارد + بورود تايم + ويل ميك إت</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- إحصائيات الخرائط -->
+        <div class="tab-pane fade" id="maps-stats" role="tabpanel">
+            <div class="card mb-4">
+                <div class="card-header bg-info text-white">
+                    <h3 class="mb-0">إحصائيات الخرائط</h3>
+                </div>
+                <div class="card-body">
+                    <h4 class="stats-subtitle">معدل الفوز في كل خريطة</h4>
+                    <p class="text-muted mb-4">معدل فوز الكيلرز مقابل السرفايفرز في كل خريطة:</p>
+                    
+                    <div class="chart-container mb-5">
+                        <canvas id="mapsWinRateChart" width="400" height="200"></canvas>
+                    </div>
+                    
+                    <h4 class="stats-subtitle">أفضل الخرائط لكل نوع من اللاعبين</h4>
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="card bg-light mb-3">
+                                <div class="card-header">
+                                    <h5 class="mb-0">أفضل الخرائط للكيلرز</h5>
+                                </div>
+                                <div class="card-body">
+                                    <ol class="list-group list-group-flush list-group-numbered">
+                                        <li class="list-group-item bg-transparent">ذا جيم (معدل فوز: 68.3%)</li>
+                                        <li class="list-group-item bg-transparent">هاوكينز ناشيونال لابوراتوري (معدل فوز: 65.7%)</li>
+                                        <li class="list-group-item bg-transparent">ميدويتش اليمنتري سكول (معدل فوز: 62.9%)</li>
+                                        <li class="list-group-item bg-transparent">ديد دوج سالون (معدل فوز: 59.3%)</li>
+                                        <li class="list-group-item bg-transparent">لامبكين لين (معدل فوز: 57.8%)</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card bg-light mb-3">
+                                <div class="card-header">
+                                    <h5 class="mb-0">أفضل الخرائط للسرفايفرز</h5>
+                                </div>
+                                <div class="card-body">
+                                    <ol class="list-group list-group-flush list-group-numbered">
+                                        <li class="list-group-item bg-transparent">ماذر'ز دويلينج (معدل فوز: 54.2%)</li>
+                                        <li class="list-group-item bg-transparent">ريد فورست (معدل فوز: 52.8%)</li>
+                                        <li class="list-group-item bg-transparent">كول وايند فارم (معدل فوز: 51.6%)</li>
+                                        <li class="list-group-item bg-transparent">أوتوهافن رِكِرز (معدل فوز: 50.9%)</li>
+                                        <li class="list-group-item bg-transparent">ماكميلان استيت (معدل فوز: 49.7%)</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h4 class="stats-subtitle">تأثير الخرائط على أداء الشخصيات</h4>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead class="table-info">
+                                <tr>
+                                    <th scope="col">الخريطة</th>
+                                    <th scope="col">أفضل كيلر فيها</th>
+                                    <th scope="col">معدل فوزه</th>
+                                    <th scope="col">أفضل سرفايفر فيها</th>
+                                    <th scope="col">معدل نجاته</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>ذا جيم</td>
+                                    <td>ذا دوکتر</td>
+                                    <td>73.4%</td>
+                                    <td>نيا كارلسون</td>
+                                    <td>42.8%</td>
+                                </tr>
+                                <tr>
+                                    <td>ميدويتش سكول</td>
+                                    <td>ذا هاج</td>
+                                    <td>71.2%</td>
+                                    <td>لوري سترود</td>
+                                    <td>44.6%</td>
+                                </tr>
+                                <tr>
+                                    <td>ريد فورست</td>
+                                    <td>ذا هنترس</td>
+                                    <td>65.7%</td>
+                                    <td>جيك بارك</td>
+                                    <td>57.3%</td>
+                                </tr>
+                                <tr>
+                                    <td>ماذر'ز دويلينج</td>
+                                    <td>ذا سبيريت</td>
+                                    <td>62.9%</td>
+                                    <td>كيت دينسون</td>
+                                    <td>59.2%</td>
+                                </tr>
+                                <tr>
+                                    <td>أوتوهافن رِكِرز</td>
+                                    <td>ذا بلايت</td>
+                                    <td>66.5%</td>
+                                    <td>فينيت بونسيت</td>
+                                    <td>54.8%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- ملاحظات حول الإحصائيات -->
+    <div class="card mt-5">
+        <div class="card-body">
+            <h3 class="mb-3">ملاحظات حول الإحصائيات</h3>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">هذه الإحصائيات مستندة على بيانات اللعبة من آخر 30 يوم.</li>
+                <li class="list-group-item">معدل الفوز للكيلرز يحسب على أساس قتل 3 سرفايفرز أو أكثر في المباراة.</li>
+                <li class="list-group-item">معدل النجاة للسرفايفرز يحسب على أساس الهروب من بوابات الخروج أو الهاتش.</li>
+                <li class="list-group-item">تم تجميع هذه الإحصائيات من مباريات الرتب 1-10 فقط.</li>
+                <li class="list-group-item">يتم تحديث هذه الإحصائيات أسبوعياً يوم الأربعاء.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<style>
+    .chart-container {
+        position: relative;
+        height: 300px;
+        margin-bottom: 30px;
+    }
+    
+    .stats-subtitle {
+        border-bottom: 2px solid #f0f0f0;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+        color: #343a40;
+    }
+    
+    .nav-tabs .nav-link {
+        color: #495057;
+        font-weight: 600;
+    }
+    
+    .nav-tabs .nav-link.active {
+        font-weight: 700;
+    }
+</style>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // محاكاة البيانات للرسوم البيانية
+        // في الواقع، ستأتي هذه البيانات من الخادم
+        
+        // معدل استخدام الكيلرز
+        const killersUsageData = {
+            labels: ['ذا نيرس', 'ذا سبيريت', 'ذا هنترس', 'ذا بلايت', 'ذا هاج', 'ذا تراپر', 'ذا كانيبال'],
+            datasets: [{
+                label: 'معدل الاستخدام',
+                data: [12.3, 14.7, 8.9, 9.6, 7.2, 6.5, 5.8],
+                backgroundColor: [
+                    'rgba(220, 53, 69, 0.7)',
+                    'rgba(220, 53, 69, 0.7)',
+                    'rgba(220, 53, 69, 0.7)',
+                    'rgba(220, 53, 69, 0.7)',
+                    'rgba(220, 53, 69, 0.7)',
+                    'rgba(220, 53, 69, 0.7)',
+                    'rgba(220, 53, 69, 0.7)'
+                ],
+                borderColor: [
+                    'rgba(220, 53, 69, 1)',
+                ],
+                borderWidth: 1
+            }]
+        };
+        
+        // معدل الفوز للكيلرز
+        const killersWinRateData = {
+            labels: ['ذا نيرس', 'ذا سبيريت', 'ذا بلايت', 'ذا هاج', 'ذا هنترس', 'ذا تراپر', 'ذا كانيبال'],
+            datasets: [{
+                label: 'معدل الفوز',
+                data: [68.5, 64.2, 62.8, 59.3, 57.1, 53.8, 52.4],
+                backgroundColor: [
+                    'rgba(220, 53, 69, 0.7)',
+                    'rgba(220, 53, 69, 0.7)',
+                    'rgba(220, 53, 69, 0.7)',
+                    'rgba(220, 53, 69, 0.7)',
+                    'rgba(220, 53, 69, 0.7)',
+                    'rgba(220, 53, 69, 0.7)',
+                    'rgba(220, 53, 69, 0.7)'
+                ],
+                borderColor: [
+                    'rgba(220, 53, 69, 1)',
+                ],
+                borderWidth: 1
+            }]
+        };
+        
+        // معدل استخدام السرفايفرز
+        const survivorsUsageData = {
+            labels: ['كلوديت موريل', 'ميج توماس', 'ديفيد كينج', 'نيا كارلسون', 'فينيت بونسيت', 'جيك بارك', 'دوايت فيرفيلد'],
+            datasets: [{
+                label: 'معدل الاستخدام',
+                data: [18.6, 15.2, 12.1, 9.3, 7.4, 6.9, 6.2],
+                backgroundColor: [
+                    'rgba(13, 110, 253, 0.7)',
+                    'rgba(13, 110, 253, 0.7)',
+                    'rgba(13, 110, 253, 0.7)',
+                    'rgba(13, 110, 253, 0.7)',
+                    'rgba(13, 110, 253, 0.7)',
+                    'rgba(13, 110, 253, 0.7)',
+                    'rgba(13, 110, 253, 0.7)'
+                ],
+                borderColor: [
+                    'rgba(13, 110, 253, 1)',
+                ],
+                borderWidth: 1
+            }]
+        };
+        
+        // معدل النجاة للسرفايفرز
+        const survivorsEscapeRateData = {
+            labels: ['ميج توماس', 'كلوديت موريل', 'فينيت بونسيت', 'نيا كارلسون', 'ديفيد كينج', 'جيك بارك', 'دوايت فيرفيلد'],
+            datasets: [{
+                label: 'معدل النجاة',
+                data: [52.5, 49.8, 48.3, 47.1, 45.9, 44.6, 43.2],
+                backgroundColor: [
+                    'rgba(13, 110, 253, 0.7)',
+                    'rgba(13, 110, 253, 0.7)',
+                    'rgba(13, 110, 253, 0.7)',
+                    'rgba(13, 110, 253, 0.7)',
+                    'rgba(13, 110, 253, 0.7)',
+                    'rgba(13, 110, 253, 0.7)',
+                    'rgba(13, 110, 253, 0.7)'
+                ],
+                borderColor: [
+                    'rgba(13, 110, 253, 1)',
+                ],
+                borderWidth: 1
+            }]
+        };
+        
+        // معدل استخدام بيركس الكيلر
+        const killerPerksUsageData = {
+            labels: ['باربكيو آند تشيلي', 'كوراپت انترفنشن', 'پوپ جوز ذا ويزل', 'هيكس: روين', 'هيكس: نو ون اسكيبس ديث'],
+            datasets: [{
+                label: 'معدل الاستخدام',
+                data: [68.7, 62.3, 57.8, 52.4, 48.9],
+                backgroundColor: [
+                    'rgba(220, 53, 69, 0.7)',
+                    'rgba(220, 53, 69, 0.7)',
+                    'rgba(220, 53, 69, 0.7)',
+                    'rgba(220, 53, 69, 0.7)',
+                    'rgba(220, 53, 69, 0.7)'
+                ],
+                borderColor: [
+                    'rgba(220, 53, 69, 1)',
+                ],
+                borderWidth: 1
+            }]
+        };
+        
+        // معدل استخدام بيركس السرفايفر
+        const survivorPerksUsageData = {
+            labels: ['ديد هارد', 'بورود تايم', 'أنبريكابل', 'آدرينالين', 'ديسايسيف سترايك'],
+            datasets: [{
+                label: 'معدل الاستخدام',
+                data: [71.2, 65.9, 59.4, 53.7, 51.2],
+                backgroundColor: [
+                    'rgba(13, 110, 253, 0.7)',
+                    'rgba(13, 110, 253, 0.7)',
+                    'rgba(13, 110, 253, 0.7)',
+                    'rgba(13, 110, 253, 0.7)',
+                    'rgba(13, 110, 253, 0.7)'
+                ],
+                borderColor: [
+                    'rgba(13, 110, 253, 1)',
+                ],
+                borderWidth: 1
+            }]
+        };
+        
+        // معدل الفوز في كل خريطة
+        const mapsWinRateData = {
+            labels: ['ذا جيم', 'هاوكينز ناشيونال لابوراتوري', 'ميدويتش سكول', 'ديد دوج سالون', 'لامبكين لين', 'ريد فورست', 'كول وايند فارم', 'أوتوهافن رِكِرز', 'ماكميلان استيت', 'ماذر'ز دويلينج'],
+            datasets: [
+                {
+                    label: 'معدل فوز الكيلرز',
+                    data: [68.3, 65.7, 62.9, 59.3, 57.8, 47.2, 48.4, 49.1, 50.3, 45.8],
+                    backgroundColor: 'rgba(220, 53, 69, 0.7)',
+                    borderColor: 'rgba(220, 53, 69, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: 'معدل فوز السرفايفرز',
+                    data: [31.7, 34.3, 37.1, 40.7, 42.2, 52.8, 51.6, 50.9, 49.7, 54.2],
+                    backgroundColor: 'rgba(13, 110, 253, 0.7)',
+                    borderColor: 'rgba(13, 110, 253, 1)',
+                    borderWidth: 1
+                }
+            ]
+        };
+        
+        // إنشاء الرسوم البيانية
+        const ctx1 = document.getElementById('killersUsageChart')?.getContext('2d');
+        if (ctx1) {
+            new Chart(ctx1, {
+                type: 'bar',
+                data: killersUsageData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'نسبة الاستخدام %'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        const ctx2 = document.getElementById('killersWinRateChart')?.getContext('2d');
+        if (ctx2) {
+            new Chart(ctx2, {
+                type: 'bar',
+                data: killersWinRateData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'معدل الفوز %'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        const ctx3 = document.getElementById('survivorsUsageChart')?.getContext('2d');
+        if (ctx3) {
+            new Chart(ctx3, {
+                type: 'bar',
+                data: survivorsUsageData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'نسبة الاستخدام %'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        const ctx4 = document.getElementById('survivorsEscapeRateChart')?.getContext('2d');
+        if (ctx4) {
+            new Chart(ctx4, {
+                type: 'bar',
+                data: survivorsEscapeRateData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'معدل النجاة %'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        const ctx5 = document.getElementById('killerPerksUsageChart')?.getContext('2d');
+        if (ctx5) {
+            new Chart(ctx5, {
+                type: 'bar',
+                data: killerPerksUsageData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'نسبة الاستخدام %'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        const ctx6 = document.getElementById('survivorPerksUsageChart')?.getContext('2d');
+        if (ctx6) {
+            new Chart(ctx6, {
+                type: 'bar',
+                data: survivorPerksUsageData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'نسبة الاستخدام %'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        const ctx7 = document.getElementById('mapsWinRateChart')?.getContext('2d');
+        if (ctx7) {
+            new Chart(ctx7, {
+                type: 'bar',
+                data: mapsWinRateData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'معدل الفوز %'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    });
+</script>
+
+{% endblock %}

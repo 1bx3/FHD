@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دبـد بالـعربـي | موقع ديد باي دايلايت العربي</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/rtl.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <a href="/">
+                    <h1>دبـد بالـعربـي</h1>
+                    <span class="subtitle">دليل ديد باي دايلايت العربي</span>
+                </a>
+            </div>
+            <nav>
+                <ul class="main-nav">
+                    <li><a href="/" class="{{ 'active' if request.path == '/' else '' }}">الرئيسية</a></li>
+                    <li><a href="/killers" class="{{ 'active' if 'killers' in request.path else '' }}">الكيلرز</a></li>
+                    <li><a href="/survivors" class="{{ 'active' if 'survivors' in request.path else '' }}">السرفايفرز</a></li>
+                    <li><a href="/perks" class="{{ 'active' if 'perks' in request.path else '' }}">البيركس</a></li>
+                    <li><a href="/stats" class="{{ 'active' if 'stats' in request.path else '' }}">الإحصائيات</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-nav-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </header>
+
+        <main>
+            {% if error %}
+                <div class="error-message">
+                    <p>{{ error }}</p>
+                </div>
+            {% endif %}
+            
+            {% block content %}{% endblock %}
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>دبـد بالـعربـي</h2>
+                    <p>دليل ديد باي دايلايت العربي</p>
+                </div>
+                <div class="footer-links">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="/">الرئيسية</a></li>
+                        <li><a href="/killers">الكيلرز</a></li>
+                        <li><a href="/survivors">السرفايفرز</a></li>
+                        <li><a href="/perks">البيركس</a></li>
+                        <li><a href="/stats">الإحصائيات</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h3>تواصل معنا</h3>
+                    <div class="social-icons">
+                        <a href="https://twitter.com/dbd__ar" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://discord.gg/3Zt2Ksx3wQ" target="_blank"><i class="fab fa-discord"></i></a>
+                        <a href="https://www.instagram.com/dbd__ar" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@dbd__ar" target="_blank"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 دبـد بالـعربـي - جميع الحقوق محفوظة</p>
+                <p>ديد باي دايلايت هي علامة تجارية مسجلة لشركة بيهيفيور انتراكتيف</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

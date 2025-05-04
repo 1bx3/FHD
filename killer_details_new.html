@@ -1,0 +1,209 @@
+{% extends "base_new.html" %}
+{% block content %}
+
+<div class="killer-details-page">
+    <!-- رابط العودة -->
+    <div class="mb-4">
+        <a href="{{ url_for('killers_page') }}" class="btn btn-outline-dark">
+            <i class="fas fa-arrow-right ms-2"></i>العودة إلى قائمة الكيلرز
+        </a>
+    </div>
+    
+    <!-- معلومات الكيلر الرئيسية -->
+    <div class="card mb-5 killer-main-card">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="{{ killer.image }}" class="img-fluid rounded-start h-100 w-100 object-fit-cover" alt="{{ killer.name }}">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h1 class="card-title">{{ killer.name }}</h1>
+                    <div class="difficulty-badge mb-3">
+                        <span class="badge 
+                            {% if killer.difficulty == 'سهل' %}bg-success
+                            {% elif killer.difficulty == 'متوسط' %}bg-warning
+                            {% else %}bg-danger{% endif %}">
+                            مستوى الصعوبة: {{ killer.difficulty }}
+                        </span>
+                    </div>
+                    <h3 class="power-title">القدرة الخاصة</h3>
+                    <p class="card-text power-text">{{ killer.power }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- قصة الكيلر -->
+    <div class="card mb-5">
+        <div class="card-header bg-dark text-white">
+            <h3 class="mb-0">قصة الكيلر</h3>
+        </div>
+        <div class="card-body">
+            <p class="backstory-text">{{ killer.backstory }}</p>
+        </div>
+    </div>
+    
+    <!-- توصيات وأساليب اللعب -->
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-header bg-dark text-white">
+                    <h3 class="mb-0">أسلوب اللعب الموصى به</h3>
+                </div>
+                <div class="card-body">
+                    <h4 class="playstyle-title">استراتيجية حراسة الأهداف</h4>
+                    <p>يعتمد أسلوب اللعب بـ {{ killer.name }} على استغلال قدرته الخاصة لمطاردة السرفايفرز والضغط عليهم. يمكن استخدام {{ killer.power }} للتنقل بسرعة بين المولدات ومناطق الضغط المختلفة.</p>
+                    <ul class="playstyle-tips">
+                        <li>استخدم قدرتك للانتقال بسرعة بين المولدات التي يتم العمل عليها.</li>
+                        <li>ركز على حراسة 3-4 مولدات متقاربة عوضاً عن محاولة حراسة المولدات جميعها.</li>
+                        <li>لا تضيع وقتاً طويلاً في مطاردة سرفايفر واحد إذا كان ماهراً في المراوغة.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-header bg-dark text-white">
+                    <h3 class="mb-0">أفضل البيركس الموصى بها</h3>
+                </div>
+                <div class="card-body">
+                    <div class="recommended-perk mb-3">
+                        <h4>باربكيو آند تشيلي</h4>
+                        <p>يسمح لك برؤية مواقع السرفايفرز البعيدين بعد تعليق سرفايفر على الخطاف.</p>
+                    </div>
+                    <div class="recommended-perk mb-3">
+                        <h4>كوراپت انترفنشن</h4>
+                        <p>يمنع السرفايفرز من إصلاح 3 مولدات بعيدة في بداية المباراة.</p>
+                    </div>
+                    <div class="recommended-perk mb-3">
+                        <h4>پوپ جوز ذا ويزل</h4>
+                        <p>بعد تعليق سرفايفر، يمكنك ركل مولد لتراجع نسبة إصلاحه.</p>
+                    </div>
+                    <div class="recommended-perk">
+                        <h4>هيكس: روين</h4>
+                        <p>يجعل المولدات تتراجع عندما لا يصلحها أحد.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- نصائح للعب بهذا الكيلر -->
+    <div class="card mb-4">
+        <div class="card-header bg-dark text-white">
+            <h3 class="mb-0">نصائح متقدمة للعب</h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <h4><i class="fas fa-lightbulb text-warning me-2"></i>استخدام القدرة الخاصة</h4>
+                    <ul class="advanced-tips">
+                        <li>تعلم التوقيت المثالي لاستخدام {{ killer.power }} للحصول على أقصى فائدة.</li>
+                        <li>لا تستنفذ قدرتك الخاصة بالكامل، حافظ دائماً على جزء منها للمواقف الحرجة.</li>
+                        <li>مارس استخدام القدرة في المناطق الضيقة والمفتوحة لتتعلم كيفية التحكم بها بدقة.</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h4><i class="fas fa-exclamation-triangle text-danger me-2"></i>الأخطاء الشائعة</h4>
+                    <ul class="advanced-tips">
+                        <li>تجنب الاستمرار في مطاردة سرفايفر واحد لفترة طويلة (أكثر من 30 ثانية).</li>
+                        <li>لا تضع الخطافات بعيدة عن بعضها، حاول أن تكون متقاربة لسهولة المراقبة.</li>
+                        <li>عدم ترك المولدات المكتملة بنسبة 90% بدون مراقبة.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- مقاطع فيديو إرشادية -->
+    <div class="card mb-4">
+        <div class="card-header bg-dark text-white">
+            <h3 class="mb-0">مقاطع فيديو إرشادية</h3>
+        </div>
+        <div class="card-body">
+            <p>لمزيد من النصائح حول كيفية اللعب بـ {{ killer.name }}، يمكنك مشاهدة مقاطع الفيديو الإرشادية على قناتنا على يوتيوب:</p>
+            <div class="d-grid gap-2 col-md-6 mx-auto">
+                <a href="#" class="btn btn-danger" target="_blank">
+                    <i class="fab fa-youtube me-2"></i>مشاهدة الفيديوهات الإرشادية
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- كيلرز أخرى قد تعجبك -->
+    <div class="other-killers mt-5">
+        <h3 class="section-title mb-4">كيلرز أخرى قد تعجبك</h3>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <div class="card h-100">
+                    <img src="static/images/logo.png" class="card-img-top" alt="ذا تراپر">
+                    <div class="card-body">
+                        <h5 class="card-title">ذا تراپر</h5>
+                        <span class="badge bg-success mb-2">سهل</span>
+                        <p class="card-text">مناسب للاعبين الذين يفضلون أسلوب المراقبة والتخطيط.</p>
+                        <a href="#" class="btn btn-sm btn-dark">عرض التفاصيل</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="static/images/logo.png" class="card-img-top" alt="ذا هانترس">
+                    <div class="card-body">
+                        <h5 class="card-title">ذا هانترس</h5>
+                        <span class="badge bg-warning mb-2">متوسط</span>
+                        <p class="card-text">مناسب للاعبين الذين يفضلون الهجوم من مسافات بعيدة.</p>
+                        <a href="#" class="btn btn-sm btn-dark">عرض التفاصيل</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <img src="static/images/logo.png" class="card-img-top" alt="ذا نيرس">
+                    <div class="card-body">
+                        <h5 class="card-title">ذا نيرس</h5>
+                        <span class="badge bg-danger mb-2">صعب</span>
+                        <p class="card-text">مناسب للاعبين الذين يتقنون التنقل السريع والهجوم المفاجئ.</p>
+                        <a href="#" class="btn btn-sm btn-dark">عرض التفاصيل</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .killer-main-card {
+        border: none;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+    
+    .backstory-text {
+        font-size: 1.1rem;
+        line-height: 1.8;
+    }
+    
+    .playstyle-title, .recommended-perk h4 {
+        border-bottom: 2px solid #f0f0f0;
+        padding-bottom: 10px;
+        margin-bottom: 15px;
+        color: #343a40;
+    }
+    
+    .playstyle-tips li, .advanced-tips li {
+        margin-bottom: 10px;
+    }
+    
+    .power-title {
+        font-size: 1.5rem;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        color: #dc3545;
+    }
+    
+    .power-text {
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+    }
+</style>
+
+{% endblock %}

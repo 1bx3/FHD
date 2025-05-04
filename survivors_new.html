@@ -1,0 +1,83 @@
+{% extends "base_new.html" %}
+{% block content %}
+
+<div class="survivors-page">
+    <h1 class="section-title text-center mb-4">سرفايفرز</h1>
+    <p class="lead text-center mb-5">اكتشف جميع السرفايفرز المتاحين في لعبة ديد باي دايلايت وتعرف على قدراتهم الخاصة ومستوى صعوبتهم.</p>
+    
+    <!-- أدوات البحث والتصفية -->
+    <div class="search-filter-section mb-4">
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-search"></i></span>
+                    <input type="text" id="survivor-search" class="form-control" placeholder="ابحث عن سرفايفر...">
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <div class="input-group">
+                    <span class="input-group-text">فلتر حسب الصعوبة</span>
+                    <select id="survivor-difficulty-filter" class="form-select">
+                        <option value="all">الكل</option>
+                        <option value="سهل">سهل</option>
+                        <option value="متوسط">متوسط</option>
+                        <option value="صعب">صعب</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- قائمة السرفايفرز -->
+    <div class="row">
+        {% for survivor in survivors %}
+        <div class="col-md-4 mb-4">
+            <div class="card survivor-card" data-difficulty="{{ survivor.difficulty }}">
+                <img src="{{ survivor.image }}" class="card-img-top" alt="{{ survivor.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ survivor.name }}</h5>
+                    <div class="difficulty-badge mb-2">
+                        <span class="badge 
+                            {% if survivor.difficulty == 'سهل' %}bg-success
+                            {% elif survivor.difficulty == 'متوسط' %}bg-warning
+                            {% else %}bg-danger{% endif %}">
+                            {{ survivor.difficulty }}
+                        </span>
+                    </div>
+                    <p class="card-text">{{ survivor.backstory|truncate(100) }}</p>
+                    <a href="{{ url_for('survivor_details', survivor_id=survivor.id) }}" class="btn btn-primary btn-sm">عرض التفاصيل</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    
+    <!-- معلومات مفيدة عن السرفايفرز -->
+    <div class="info-section mt-5">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">معلومات عن السرفايفرز</h3>
+                <p>السرفايفرز هم الشخصيات التي يمكن للاعب استخدامها للهروب من الكيلر والنجاة في لعبة ديد باي دايلايت. كل سرفايفر يمتلك ثلاث بيركس مميزة تساعده على البقاء.</p>
+                <p>في هذا القسم يمكنك استكشاف جميع السرفايفرز المتاحين في اللعبة والتعرف على قدراتهم وقصصهم ومستوى صعوبتهم. اختر السرفايفر الذي يناسب أسلوب لعبك!</p>
+                <p>يمكنك البحث عن سرفايفر معين باستخدام خانة البحث أو تصفية السرفايفرز حسب مستوى الصعوبة.</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- نصائح للعب بالسرفايفرز -->
+    <div class="tips-section mt-4">
+        <div class="card bg-light">
+            <div class="card-body">
+                <h4 class="card-title"><i class="fas fa-lightbulb text-warning me-2"></i> نصائح للعب</h4>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item bg-transparent">حافظ على هدوئك وتجنب الركض دون داعي لتفادي ترك آثار يمكن للكيلر رؤيتها.</li>
+                    <li class="list-group-item bg-transparent">تعاون مع زملائك السرفايفرز لإصلاح المولدات بشكل أسرع.</li>
+                    <li class="list-group-item bg-transparent">تعلم متى يجب عليك المخاطرة لإنقاذ زميلك ومتى يجب عليك إعطاء الأولوية لإصلاح المولدات.</li>
+                    <li class="list-group-item bg-transparent">استخدم البيركس التي تكمل أسلوب لعبك بدلاً من اتباع الميتا العامة.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

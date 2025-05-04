@@ -1,0 +1,467 @@
+{% extends "base_new.html" %}
+{% block content %}
+
+<div class="guide-page">
+    <h1 class="section-title text-center mb-4">دليل المبتدئين</h1>
+    <p class="lead text-center mb-5">هذا الدليل سيساعدك على فهم أساسيات لعبة ديد باي دايلايت والبدء بشكل صحيح.</p>
+    
+    <!-- قسم المقدمة -->
+    <div class="card mb-5">
+        <div class="card-body">
+            <h2 class="card-title mb-3">ما هي ديد باي دايلايت؟</h2>
+            <p>ديد باي دايلايت (Dead by Daylight) هي لعبة رعب غير متماثلة متعددة اللاعبين، حيث يلعب أربعة لاعبين في دور السرفايفرز (الناجين) الذين يحاولون الهروب، بينما يلعب لاعب واحد دور الكيلر (القاتل) الذي يحاول اصطيادهم.</p>
+            <p>تمتلك اللعبة عنصر رعب مميز، وتعتمد على المطاردة والاختباء والتعاون بين اللاعبين. كل مباراة تكون مختلفة عن سابقتها، مما يجعل اللعبة دائمة التجدد والإثارة.</p>
+            
+            <div class="row mt-4 mb-3">
+                <div class="col-md-6">
+                    <div class="card bg-dark text-white mb-3">
+                        <div class="card-body">
+                            <h4 class="card-title">الهدف كـ سرفايفر</h4>
+                            <p class="card-text">الهروب من منطقة اللعب عن طريق إصلاح 5 مولدات للكهرباء وفتح بوابات الخروج، مع تجنب الكيلر والهروب منه.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card bg-danger text-white mb-3">
+                        <div class="card-body">
+                            <h4 class="card-title">الهدف كـ كيلر</h4>
+                            <p class="card-text">مطاردة السرفايفرز والقبض عليهم وتعليقهم على الخطافات المنتشرة في المنطقة، ومحاولة منع هروبهم من الخريطة.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- أقسام الدليل -->
+    <ul class="nav nav-tabs mb-4" id="guideTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="basics-tab" data-bs-toggle="tab" data-bs-target="#basics" type="button" role="tab">أساسيات اللعبة</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="survivor-guide-tab" data-bs-toggle="tab" data-bs-target="#survivor-guide" type="button" role="tab">دليل السرفايفر</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="killer-guide-tab" data-bs-toggle="tab" data-bs-target="#killer-guide" type="button" role="tab">دليل الكيلر</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="perks-guide-tab" data-bs-toggle="tab" data-bs-target="#perks-guide" type="button" role="tab">البيركس والمكافآت</button>
+        </li>
+    </ul>
+    
+    <!-- محتوى الأقسام -->
+    <div class="tab-content" id="guideTabContent">
+        <!-- أساسيات اللعبة -->
+        <div class="tab-pane fade show active" id="basics" role="tabpanel">
+            <div class="card mb-4">
+                <div class="card-header bg-secondary text-white">
+                    <h3 class="mb-0">أساسيات اللعبة</h3>
+                </div>
+                <div class="card-body">
+                    <h4 class="guide-subtitle">كيفية بدء اللعب</h4>
+                    <ol class="guide-list">
+                        <li>قم بتحميل اللعبة وإنشاء حساب.</li>
+                        <li>اختر ما إذا كنت تريد اللعب كـ سرفايفر أو كيلر.</li>
+                        <li>عند بدء المباراة، سيتم توزيع السرفايفرز بشكل عشوائي في الخريطة.</li>
+                        <li>يبدأ الكيلر من مكان محدد ويجب عليه البحث عن السرفايفرز.</li>
+                    </ol>
+                    
+                    <h4 class="guide-subtitle mt-4">الخرائط والبيئة</h4>
+                    <p>تحتوي اللعبة على عدة خرائط مختلفة، كل منها بتصميم فريد:</p>
+                    <ul class="guide-list">
+                        <li>مستشفى مهجور</li>
+                        <li>مزرعة</li>
+                        <li>حطام سفينة</li>
+                        <li>معهد</li>
+                        <li>منزل ريفي</li>
+                        <li>غابة كثيفة</li>
+                    </ul>
+                    <p>كل خريطة تحتوي على عناصر مشتركة:</p>
+                    <ul class="guide-list">
+                        <li><strong>المولدات:</strong> 7 مولدات منتشرة في الخريطة، يحتاج السرفايفرز لإصلاح 5 منها.</li>
+                        <li><strong>الخطافات:</strong> أماكن يعلق الكيلر عليها السرفايفرز.</li>
+                        <li><strong>بوابات الخروج:</strong> بوابتان يتم فتحهما بعد إصلاح 5 مولدات للهروب.</li>
+                        <li><strong>باب الهاتش:</strong> خيار بديل للهروب يظهر عند موت جميع السرفايفرز ما عدا واحد.</li>
+                    </ul>
+                    
+                    <h4 class="guide-subtitle mt-4">نصائح عامة للمبتدئين</h4>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card bg-light mb-3">
+                                <div class="card-body">
+                                    <h5>نصائح للسرفايفرز</h5>
+                                    <ul class="guide-list">
+                                        <li>تجنب الركض إلا عند الضرورة لتفادي ترك آثار.</li>
+                                        <li>تعاون مع زملائك وساعدهم عند الحاجة.</li>
+                                        <li>استخدم البيئة المحيطة للاختباء والهروب.</li>
+                                        <li>لا تقم بإصلاح المولدات وحدك إذا كان بإمكانك التعاون مع زميل.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card bg-light mb-3">
+                                <div class="card-body">
+                                    <h5>نصائح للكيلرز</h5>
+                                    <ul class="guide-list">
+                                        <li>راقب المولدات التي يتم العمل عليها.</li>
+                                        <li>لا تضيع وقتاً طويلاً في مطاردة سرفايفر واحد.</li>
+                                        <li>تعلم قدرات كيلرك الخاصة واستخدمها بفعالية.</li>
+                                        <li>ضع الخطافات في مناطق استراتيجية للمراقبة.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- دليل السرفايفر -->
+        <div class="tab-pane fade" id="survivor-guide" role="tabpanel">
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">دليل السرفايفر</h3>
+                </div>
+                <div class="card-body">
+                    <h4 class="guide-subtitle">مهارات أساسية للسرفايفر</h4>
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="card bg-light mb-3">
+                                <div class="card-body">
+                                    <h5>إصلاح المولدات</h5>
+                                    <p>يجب على السرفايفرز إصلاح 5 مولدات لتشغيل بوابات الخروج:</p>
+                                    <ul class="guide-list">
+                                        <li>اضغط على زر التفاعل بالقرب من المولد للبدء في إصلاحه.</li>
+                                        <li>ستظهر اختبارات المهارة التي يجب إكمالها بنجاح.</li>
+                                        <li>الفشل في اختبار المهارة سيصدر صوتاً ينبه الكيلر لموقعك.</li>
+                                        <li>العمل مع زميل آخر يسرع عملية الإصلاح.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card bg-light mb-3">
+                                <div class="card-body">
+                                    <h5>إنقاذ الزملاء</h5>
+                                    <p>إنقاذ زملائك من الخطافات أمر بالغ الأهمية:</p>
+                                    <ul class="guide-list">
+                                        <li>انتظر حتى يغادر الكيلر المنطقة قبل محاولة الإنقاذ.</li>
+                                        <li>اضغط على زر التفاعل بالقرب من الخطاف لإنقاذ زميلك.</li>
+                                        <li>بعد الإنقاذ، قم بمعالجة زميلك لاستعادة صحته.</li>
+                                        <li>السرفايفر المعلق يمر بثلاث مراحل قبل الموت، فلا تتأخر في الإنقاذ.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="card bg-light mb-3">
+                                <div class="card-body">
+                                    <h5>المراوغة والهروب</h5>
+                                    <p>تعلم كيفية الهروب من الكيلر عند مطاردتك:</p>
+                                    <ul class="guide-list">
+                                        <li>استخدم النوافذ والحواجز للقفز عبرها وإبطاء الكيلر.</li>
+                                        <li>قم بإسقاط المنصات الخشبية لإيقاف الكيلر مؤقتاً.</li>
+                                        <li>غير اتجاهك بشكل مفاجئ لإرباك الكيلر.</li>
+                                        <li>استخدم الزوايا والأشجار لإخفاء آثارك.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card bg-light mb-3">
+                                <div class="card-body">
+                                    <h5>العلاج والتعافي</h5>
+                                    <p>معالجة نفسك وزملائك أمر ضروري للبقاء:</p>
+                                    <ul class="guide-list">
+                                        <li>يمكنك استخدام حقيبة الإسعافات لعلاج نفسك أو الآخرين.</li>
+                                        <li>العلاج الذاتي يستغرق وقتاً أطول من العلاج بواسطة زميل.</li>
+                                        <li>تجنب العلاج في مناطق مكشوفة أو قريبة من الكيلر.</li>
+                                        <li>بعض البيركس تساعد في تسريع عملية العلاج.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h4 class="guide-subtitle mt-4">أفضل السرفايفرز للمبتدئين</h4>
+                    <div class="row row-cols-1 row-cols-md-3 g-4">
+                        <div class="col">
+                            <div class="card h-100">
+                                <img src="static/images/logo.png" class="card-img-top" alt="كلوديت موريل">
+                                <div class="card-body">
+                                    <h5 class="card-title">كلوديت موريل</h5>
+                                    <span class="badge bg-success mb-2">سهل</span>
+                                    <p class="card-text">مثالية للمبتدئين بفضل قدرتها على علاج نفسها والآخرين بسرعة.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card h-100">
+                                <img src="static/images/logo.png" class="card-img-top" alt="دوايت فيرفيلد">
+                                <div class="card-body">
+                                    <h5 class="card-title">دوايت فيرفيلد</h5>
+                                    <span class="badge bg-success mb-2">سهل</span>
+                                    <p class="card-text">جيد للعمل الجماعي وإصلاح المولدات بسرعة عند العمل مع الآخرين.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card h-100">
+                                <img src="static/images/logo.png" class="card-img-top" alt="ميج توماس">
+                                <div class="card-body">
+                                    <h5 class="card-title">ميج توماس</h5>
+                                    <span class="badge bg-warning mb-2">متوسط</span>
+                                    <p class="card-text">مناسبة للاعبين الذين يفضلون السرعة والهروب من الكيلر.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- دليل الكيلر -->
+        <div class="tab-pane fade" id="killer-guide" role="tabpanel">
+            <div class="card mb-4">
+                <div class="card-header bg-dark text-white">
+                    <h3 class="mb-0">دليل الكيلر</h3>
+                </div>
+                <div class="card-body">
+                    <h4 class="guide-subtitle">مهارات أساسية للكيلر</h4>
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="card bg-light mb-3">
+                                <div class="card-body">
+                                    <h5>المطاردة والضرب</h5>
+                                    <p>أساسيات مطاردة وضرب السرفايفرز:</p>
+                                    <ul class="guide-list">
+                                        <li>الضربة الأولى تجعل السرفايفر جريحاً ويترك آثار دم.</li>
+                                        <li>الضربة الثانية تسقط السرفايفر وتسمح لك بحمله.</li>
+                                        <li>انتبه للآثار وأصوات التنفس وحركات العشب.</li>
+                                        <li>تعلم كيفية قطع المسافات أثناء المطاردة والالتفاف حول العوائق.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card bg-light mb-3">
+                                <div class="card-body">
+                                    <h5>حراسة المناطق المهمة</h5>
+                                    <p>تعلم كيفية حماية المولدات والمناطق المهمة:</p>
+                                    <ul class="guide-list">
+                                        <li>ركز على حراسة 3-4 مولدات متقاربة.</li>
+                                        <li>تفقد المولدات التي تمت إصلاحها جزئياً بشكل دوري.</li>
+                                        <li>ضع السرفايفرز على خطافات قريبة من المولدات المستهدفة.</li>
+                                        <li>انتبه لصوت المولدات التي يتم العمل عليها.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="card bg-light mb-3">
+                                <div class="card-body">
+                                    <h5>استخدام القدرات الخاصة</h5>
+                                    <p>كل كيلر له قدرة فريدة يجب إتقانها:</p>
+                                    <ul class="guide-list">
+                                        <li>تدرب على استخدام قدرة الكيلر الخاصة بك في وقت مناسب.</li>
+                                        <li>بعض القدرات تفيد في المطاردة، وأخرى في المراقبة والكشف.</li>
+                                        <li>استخدم القدرة لإجبار السرفايفرز على التحرك نحو مناطق مكشوفة.</li>
+                                        <li>لا تهدر طاقة قدرتك الخاصة دون داعٍ.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card bg-light mb-3">
+                                <div class="card-body">
+                                    <h5>استراتيجيات الضغط</h5>
+                                    <p>تعلم كيفية الضغط على السرفايفرز وإبطاء تقدمهم:</p>
+                                    <ul class="guide-list">
+                                        <li>حاول إبقاء السرفايفرز جرحى لإبطاء حركتهم.</li>
+                                        <li>عطل المولدات بركلها بعد الإصلاح الجزئي.</li>
+                                        <li>قم بمطاردة السرفايفرز بعيداً عن المولدات التي يعملون عليها.</li>
+                                        <li>استغل وقت تعليق سرفايفر على الخطاف للضغط على الآخرين.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h4 class="guide-subtitle mt-4">أفضل الكيلرز للمبتدئين</h4>
+                    <div class="row row-cols-1 row-cols-md-3 g-4">
+                        <div class="col">
+                            <div class="card h-100">
+                                <img src="static/images/logo.png" class="card-img-top" alt="ذا رابر">
+                                <div class="card-body">
+                                    <h5 class="card-title">ذا رابر</h5>
+                                    <span class="badge bg-success mb-2">سهل</span>
+                                    <p class="card-text">سهل التعلم ومناسب للمبتدئين، قوي في المطاردات المباشرة.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card h-100">
+                                <img src="static/images/logo.png" class="card-img-top" alt="ذا تراپر">
+                                <div class="card-body">
+                                    <h5 class="card-title">ذا تراپر</h5>
+                                    <span class="badge bg-success mb-2">سهل</span>
+                                    <p class="card-text">مناسب للاعبين الذين يفضلون وضع الفخاخ والتخطيط المسبق.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card h-100">
+                                <img src="static/images/logo.png" class="card-img-top" alt="ذا دوکتر">
+                                <div class="card-body">
+                                    <h5 class="card-title">ذا دوکتر</h5>
+                                    <span class="badge bg-warning mb-2">متوسط</span>
+                                    <p class="card-text">جيد في الكشف عن السرفايفرز وإبطاء حركتهم.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- البيركس والمكافآت -->
+        <div class="tab-pane fade" id="perks-guide" role="tabpanel">
+            <div class="card mb-4">
+                <div class="card-header bg-success text-white">
+                    <h3 class="mb-0">البيركس والمكافآت</h3>
+                </div>
+                <div class="card-body">
+                    <h4 class="guide-subtitle">نظام البيركس</h4>
+                    <p>البيركس هي قدرات خاصة تعطي مزايا للشخصيات في اللعبة:</p>
+                    <ul class="guide-list">
+                        <li>كل شخصية تبدأ بثلاثة بيركس فريدة خاصة بها.</li>
+                        <li>يمكن تعليم البيركس الفريدة للشخصيات الأخرى عبر شبكة الدم.</li>
+                        <li>يمكن تجهيز 4 بيركس كحد أقصى في كل مباراة.</li>
+                        <li>البيركس لها 3 مستويات مختلفة، كلما زاد المستوى زادت فعاليتها.</li>
+                    </ul>
+                    
+                    <div class="row mt-4 mb-3">
+                        <div class="col-md-6">
+                            <div class="card bg-light mb-3">
+                                <div class="card-body">
+                                    <h5>أفضل بيركس السرفايفر للمبتدئين</h5>
+                                    <ul class="guide-list">
+                                        <li><strong>سيلف كير (Self Care):</strong> يسمح لك بعلاج نفسك بدون حقيبة إسعافات.</li>
+                                        <li><strong>سپرنت بيرست (Sprint Burst):</strong> زيادة السرعة عند بدء الركض.</li>
+                                        <li><strong>بوند (Bond):</strong> رؤية زملائك من مسافة بعيدة.</li>
+                                        <li><strong>ديد هارد (Dead Hard):</strong> اندفاع للأمام لتجنب ضربة عندما تكون جريحاً.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card bg-light mb-3">
+                                <div class="card-body">
+                                    <h5>أفضل بيركس الكيلر للمبتدئين</h5>
+                                    <ul class="guide-list">
+                                        <li><strong>باربكيو آند تشيلي (BBQ & Chilli):</strong> رؤية السرفايفرز البعيدين بعد تعليق سرفايفر.</li>
+                                        <li><strong>هيكس: روين (Hex: Ruin):</strong> تراجع المولدات عندما لا يتم العمل عليها.</li>
+                                        <li><strong>سوردبلاي (Sloppy Butcher):</strong> زيادة نزيف الجروح وإبطاء العلاج.</li>
+                                        <li><strong>بروتل سترينث (Brutal Strength):</strong> تدمير الحواجز والنوافذ بسرعة أكبر.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h4 class="guide-subtitle mt-4">نظام المكافآت والتقدم</h4>
+                    <p>تعتمد اللعبة على نظام المكافآت والتقدم عبر:</p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card bg-light mb-3">
+                                <div class="card-body">
+                                    <h5>شبكة الدم (Bloodweb)</h5>
+                                    <p>نظام التطوير الرئيسي للشخصيات:</p>
+                                    <ul class="guide-list">
+                                        <li>تستخدم نقاط الدم لشراء العناصر والبيركس من شبكة الدم.</li>
+                                        <li>كل مستوى من شبكة الدم يحتوي على عناصر وبيركس مختلفة.</li>
+                                        <li>بعد شراء جميع العناصر في مستوى معين، تنتقل إلى المستوى التالي.</li>
+                                        <li>شراء البيركس الفريدة بالمستوى 3 يجعلها متاحة لجميع الشخصيات.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card bg-light mb-3">
+                                <div class="card-body">
+                                    <h5>نظام الرتب (Ranks)</h5>
+                                    <p>نظام يعكس مستوى مهارتك في اللعبة:</p>
+                                    <ul class="guide-list">
+                                        <li>تبدأ من الرتبة 20 (المبتدئين) وتتقدم نحو الرتبة 1 (المحترفين).</li>
+                                        <li>تحصل على بيبس (Pips) عند أداء جيد في المباريات.</li>
+                                        <li>يعتمد الحصول على البيبس على أدائك في فئات مختلفة (المطاردة، الإنقاذ، إلخ).</li>
+                                        <li>في بداية كل شهر يتم إعادة تعيين الرتب جزئياً.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- مقاطع فيديو إرشادية -->
+    <div class="video-guides mt-5">
+        <h3 class="section-title mb-4">شاهد مقاطع فيديو إرشادية</h3>
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h4 class="mb-3">دليل فيديو للسرفايفر</h4>
+                        <a href="#" class="btn btn-danger btn-lg">
+                            <i class="fab fa-youtube me-2"></i>مشاهدة الآن
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h4 class="mb-3">دليل فيديو للكيلر</h4>
+                        <a href="#" class="btn btn-danger btn-lg">
+                            <i class="fab fa-youtube me-2"></i>مشاهدة الآن
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .guide-subtitle {
+        border-bottom: 2px solid #f0f0f0;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+        color: #343a40;
+    }
+    
+    .guide-list li {
+        margin-bottom: 10px;
+    }
+    
+    .nav-tabs .nav-link {
+        color: #495057;
+        font-weight: 600;
+    }
+    
+    .nav-tabs .nav-link.active {
+        color: #0d6efd;
+        font-weight: 700;
+    }
+</style>
+
+{% endblock %}

@@ -1,0 +1,144 @@
+{% extends "base_new.html" %}
+{% block content %}
+
+<div class="perks-page">
+    <h1 class="section-title text-center mb-4">بيركس</h1>
+    <p class="lead text-center mb-5">استكشف جميع البيركس المتاحة في لعبة ديد باي دايلايت واختر ما يناسب أسلوب لعبك.</p>
+    
+    <!-- أدوات البحث والتصفية -->
+    <div class="search-filter-section mb-4">
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-search"></i></span>
+                    <input type="text" id="perk-search" class="form-control" placeholder="ابحث عن بيرك...">
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <div class="input-group">
+                    <span class="input-group-text">فلتر حسب النوع</span>
+                    <select id="perk-type-filter" class="form-select">
+                        <option value="all">الكل</option>
+                        <option value="killer">بيركس الكيلر</option>
+                        <option value="survivor">بيركس السرفايفر</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- التبويبات للتنقل بين أنواع البيركس -->
+    <ul class="nav nav-tabs mb-4" id="perksTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="killer-perks-tab" data-bs-toggle="tab" data-bs-target="#killer-perks" type="button" role="tab">بيركس الكيلر</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="survivor-perks-tab" data-bs-toggle="tab" data-bs-target="#survivor-perks" type="button" role="tab">بيركس السرفايفر</button>
+        </li>
+    </ul>
+    
+    <!-- محتوى التبويبات -->
+    <div class="tab-content" id="perksTabContent">
+        <!-- بيركس الكيلر -->
+        <div class="tab-pane fade show active" id="killer-perks" role="tabpanel">
+            <div class="row">
+                {% for perk in killer_perks %}
+                <div class="col-md-4 mb-4">
+                    <div class="card perk-card" data-type="killer">
+                        <div class="card-header bg-dark text-white">
+                            {{ perk.name }}
+                        </div>
+                        <div class="card-body">
+                            <div class="perk-image mb-3">
+                                <img src="{{ perk.image }}" class="img-fluid" alt="{{ perk.name }}">
+                            </div>
+                            <p class="card-text">{{ perk.description }}</p>
+                            <p class="character-info"><strong>الشخصية:</strong> {{ perk.character }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <!-- بيركس السرفايفر -->
+        <div class="tab-pane fade" id="survivor-perks" role="tabpanel">
+            <div class="row">
+                {% for perk in survivor_perks %}
+                <div class="col-md-4 mb-4">
+                    <div class="card perk-card" data-type="survivor">
+                        <div class="card-header bg-primary text-white">
+                            {{ perk.name }}
+                        </div>
+                        <div class="card-body">
+                            <div class="perk-image mb-3">
+                                <img src="{{ perk.image }}" class="img-fluid" alt="{{ perk.name }}">
+                            </div>
+                            <p class="card-text">{{ perk.description }}</p>
+                            <p class="character-info"><strong>الشخصية:</strong> {{ perk.character }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+    <!-- معلومات مفيدة عن البيركس -->
+    <div class="info-section mt-5">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">معلومات عن البيركس</h3>
+                <p>البيركس هي قدرات خاصة يمكن للشخصيات استخدامها في لعبة ديد باي دايلايت. كل شخصية تأتي مع ثلاثة بيركس فريدة، ولكن يمكن تعليمها للشخصيات الأخرى بعد فتحها في شبكة الدم.</p>
+                <p>تنقسم البيركس إلى نوعين رئيسيين:</p>
+                <ul>
+                    <li><strong>بيركس الكيلر:</strong> تساعد الكيلر على مطاردة والقبض على السرفايفرز بشكل أكثر فعالية.</li>
+                    <li><strong>بيركس السرفايفر:</strong> تساعد السرفايفرز على البقاء والهروب من الكيلر بشكل أفضل.</li>
+                </ul>
+                <p>اختيار التوليفة المناسبة من البيركس أمر بالغ الأهمية لتحسين فرص نجاحك في اللعبة!</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- توصيات بتوليفات البيركس -->
+    <div class="builds-section mt-4">
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header bg-dark text-white">
+                        <h4 class="mb-0">أفضل توليفات بيركس للكيلر</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="build-item mb-3">
+                            <h5>توليفة التحكم في المولدات</h5>
+                            <p>باربكيو آند تشيلي + هيكس: روين + كوراپت انترفنشن + پوپ جوز ذا ويزل</p>
+                        </div>
+                        <div class="build-item mb-3">
+                            <h5>توليفة الصيد السريع</h5>
+                            <p>سيف ستريدين + آجيتيشن + هيكس: نو ون اسكيبس ديث + بروتل سترينث</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0">أفضل توليفات بيركس للسرفايفر</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="build-item mb-3">
+                            <h5>توليفة البقاء الذاتي</h5>
+                            <p>ديد هارد + أنبريكابل + ديسايسيف سترايك + آدرينالين</p>
+                        </div>
+                        <div class="build-item mb-3">
+                            <h5>توليفة الإنقاذ</h5>
+                            <p>بورود تايم + وي ار غونا ليف فور إيفر + بابل + ديسبرت ميجرز</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

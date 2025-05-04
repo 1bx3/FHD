@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="page-header">
+    <h1>السرفايفرز</h1>
+    <p>تعرف على شخصيات السرفايفرز في لعبة ديد باي دايلايت، خلفياتهم، وقدراتهم الفريدة</p>
+</section>
+
+<section class="survivors-filters">
+    <div class="filter-group">
+        <label for="difficulty-filter">تصفية حسب الصعوبة:</label>
+        <select id="difficulty-filter">
+            <option value="all">الكل</option>
+            <option value="سهل">سهل</option>
+            <option value="متوسط">متوسط</option>
+            <option value="صعب">صعب</option>
+        </select>
+    </div>
+    <div class="filter-group">
+        <label for="search-survivor">بحث:</label>
+        <input type="text" id="search-survivor" placeholder="ابحث عن سرفايفر...">
+    </div>
+</section>
+
+<section class="survivors-grid">
+    {% for survivor in survivors %}
+    <div class="survivor-card" data-difficulty="{{ survivor.difficulty }}">
+        <div class="survivor-image">
+            {% if survivor.image %}
+            <img src="{{ survivor.image }}" alt="{{ survivor.name }}">
+            {% else %}
+            <i class="fas fa-user"></i>
+            {% endif %}
+        </div>
+        <div class="survivor-info">
+            <h2>{{ survivor.name }}</h2>
+            <div class="survivor-difficulty">
+                <span class="difficulty-label">الصعوبة:</span>
+                <span class="difficulty-value {{ survivor.difficulty }}">{{ survivor.difficulty }}</span>
+            </div>
+            <p class="survivor-desc">{{ survivor.backstory }}</p>
+            <a href="/survivors/{{ survivor.id }}" class="btn btn-primary">عرض التفاصيل</a>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+
+<section class="survivor-tips">
+    <h2>نصائح عامة للسرفايفرز</h2>
+    <div class="tips-grid">
+        <div class="tip-card">
+            <div class="tip-icon">
+                <i class="fas fa-wrench"></i>
+            </div>
+            <h3>إصلاح المولدات</h3>
+            <p>ركز على إصلاح المولدات، فهذا هو هدفك الرئيسي للهروب.</p>
+        </div>
+        
+        <div class="tip-card">
+            <div class="tip-icon">
+                <i class="fas fa-heartbeat"></i>
+            </div>
+            <h3>تعاون مع فريقك</h3>
+            <p>مساعدة زملائك السرفايفرز سيزيد من فرص بقاء الفريق.</p>
+        </div>
+        
+        <div class="tip-card">
+            <div class="tip-icon">
+                <i class="fas fa-volume-mute"></i>
+            </div>
+            <h3>كن هادئًا</h3>
+            <p>تجنب إصدار ضوضاء غير ضرورية يمكن أن تكشف موقعك للكيلر.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}
