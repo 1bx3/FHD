@@ -1,26 +1,19 @@
-/* RTL specific styles for Arabic language support */
+/* RTL specific styles for Arabic website */
 
-/* Global RTL adjustments */
-body {
+* {
     direction: rtl;
     text-align: right;
 }
 
-/* Navigation RTL adjustments */
-.main-nav a:after {
-    right: auto;
-    left: 0;
+.main-nav li {
+    margin-right: 30px;
+    margin-left: 0;
 }
 
-.logo a {
-    align-items: flex-start;
-}
-
-/* Form elements RTL adjustments */
-input, 
-select, 
-textarea {
-    text-align: right;
+.main-nav a.active::after,
+.main-nav a:hover::after {
+    right: 0;
+    left: auto;
 }
 
 .newsletter-form input {
@@ -31,73 +24,13 @@ textarea {
     border-radius: 4px 0 0 4px;
 }
 
-/* List adjustments */
-ul, 
-ol {
-    padding-right: 20px;
-    padding-left: 0;
-}
-
-/* Icons and elements with spacing */
-.killer-portrait,
-.survivor-portrait {
+.stat-label {
+    margin-left: 15px;
     margin-right: 0;
-    margin-left: 2rem;
 }
 
-.feature-icon,
-.tip-icon,
-.perk-icon {
-    margin-right: 0;
-    margin-left: 1rem;
-}
-
-.difficulty-label {
-    margin-right: 0;
-    margin-left: 0.5rem;
-}
-
-.filter-group label {
-    margin-right: 0;
-    margin-left: 0.5rem;
-}
-
-.filter-btn {
-    margin-right: 0;
-    margin-left: 0.5rem;
-}
-
-/* Fix chart legends and tables for RTL */
-.stats-table th,
-.stats-table td {
-    text-align: right;
-}
-
-/* Breadcrumb RTL adjustment */
-.breadcrumb i {
-    transform: rotate(180deg);
-}
-
-/* Support for Font Awesome icons in RTL */
-.fa-chevron-right:before {
-    content: "\f053"; /* fa-chevron-left */
-}
-
-.fa-chevron-left:before {
-    content: "\f054"; /* fa-chevron-right */
-}
-
-/* Media query adjustments for RTL */
-@media (max-width: 768px) {
-    .killer-header,
-    .survivor-header {
-        flex-direction: column;
-        text-align: center;
-    }
-    
-    .killer-portrait,
-    .survivor-portrait {
-        margin-left: 0;
-        margin-bottom: 1rem;
+@media screen and (max-width: 768px) {
+    .character-stats {
+        margin-right: 0;
     }
 }
